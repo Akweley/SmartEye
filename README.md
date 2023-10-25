@@ -8,7 +8,7 @@ In today's rapidly evolving financial landscape, where globalization and technol
 
 In the face of these challenges, our cutting-edge technology offers a path to efficiency, security, and cost-effectiveness, allowing financial institutions to meet their regulatory obligations without compromising their clients' experiences.
 
-Imagine a world where compliance processes are no longer a burden but a seamless part of daily operations. Our solution harnesses the power of automation and artificial intelligence to streamline KYC and AML procedures. By doing so, we significantly reduce the costs associated with compliance, freeing up valuable resources for our partner institutions.
+Imagine a world where compliance processes are no longer a burden but a seamless part of daily operations. Our solution harnesses the power of blockchain technology to streamline KYC and AML procedures. By doing so, we significantly reduce the costs associated with compliance, freeing up valuable resources for our partner institutions.
 
 Our user-friendly platform provides real-time insights, enabling institutions to not just meet but exceed regulatory requirements. This allows for faster transaction processing, reduced client frustration, and ultimately, stronger client relationships. With our technology, the financial world can be secure, efficient, and client-centric all at once.
 
