@@ -15,17 +15,17 @@ Our user-friendly platform provides real-time insights, enabling institutions to
 
 # KEY FEATURES
 
-*Smart Contract for compliance processes
-*Analytics dashboard for banks
-*AML Alert system
+-Smart Contract for compliance processes
+-Analytics dashboard 
+-Anti-Money Laundering Alert system
 
 
 # USER JOURNEY
 
-*LogIn 
-*Create Organization
-*Set Up KYC for customers
-*Incorporate AML indicators and alerts
+-LogIn 
+-Create Organization
+-Set Up KYC for customers
+-Incorporate AML indicators and alerts
 
 # Contributors
 Team Black
