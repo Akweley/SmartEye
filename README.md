@@ -52,15 +52,8 @@ To get started with our blockchain-based fraud detection and AML system, follow 
 4. Configure the system according to your institution's requirements and preferences.
 
 5. Start benefiting from real-time fraud detection and AML capabilities.
-
-## License
-
-This system is distributed under the [LICENSE NAME] License. For more information, please refer to the [LICENSE FILE].
-
+   
 ## Contact
-
-For questions, support, or collaboration inquiries, please contact [Your Contact Information].
-
 Thank you for choosing our blockchain-based fraud detection and AML system. We are dedicated to helping financial institutions enhance their security and compliance efforts with this cutting-edge technology.
 
 # Contributors
