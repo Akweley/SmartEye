@@ -94,6 +94,13 @@ contract AMLContract {
         uint256 _amount,
         string memory _transactionType
     ) public onlyOwner {
+        require(
+            keccak256(abi.encodePacked(_transactionType)) ==
+                keccak256(abi.encodePacked("inbound")) ||
+                keccak256(abi.encodePacked(_transactionType)) ==
+                keccak256(abi.encodePacked("outbound")),
+            "Invalid transaction type!"
+        );
         _idTracker++;
         transactions.push(
             Transaction(
@@ -114,7 +121,7 @@ contract AMLContract {
 
         if (
             keccak256(abi.encodePacked(_transactionType)) ==
-            keccak256(abi.encodePacked("transfer"))
+            keccak256(abi.encodePacked("outbound"))
         ) {
             isOutBound(
                 _senderAccountType,
@@ -122,10 +129,7 @@ contract AMLContract {
                 _recipientRiskFactor,
                 _idTracker
             );
-        } else if (
-            keccak256(abi.encodePacked(_transactionType)) ==
-            keccak256(abi.encodePacked("deposit"))
-        ) {
+        } else {
             isInBound(_senderRiskFactor, _idTracker);
         }
     }
@@ -134,7 +138,7 @@ contract AMLContract {
     function markTransactionAsCleared(uint256 _transactionID) public onlyOwner {
         require(
             _transactionID > 0 && _transactionID <= transactions.length,
-            "Invalid transaction ID"
+            "Invalid transaction ID!"
         );
         transactions[_transactionID - 1].isMLAlert = false;
     }

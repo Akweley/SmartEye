@@ -19,6 +19,11 @@ contract AMLContractFactory {
         string memory _name,
         string memory _registrationNumber
     ) public {
+        require(
+            deployedContracts[_registrationNumber].contractAddress ==
+                address(0),
+            "Registration number already in use!"
+        );
         AMLContract newContract = new AMLContract(msg.sender);
         deployedContracts[_registrationNumber] = Bank(
             address(newContract),
