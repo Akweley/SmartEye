@@ -1,7 +1,7 @@
 # SmartEye
 ABSA Hacks 2023 Project for Team Black(18)
 
-# Blockchain-Based Fraud Detection and Anti-Money Laundering System
+# SmartEye is a Blockchain-Based Fraud Detection and Anti-Money Laundering System
 
 ## Overview
 
