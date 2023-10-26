@@ -1,11 +1,23 @@
 import { useState } from "react";
+import {BsFillExclamationTriangleFill} from "react-icons/bs"
+import {GrTransaction} from "react-icons/gr"
 import "./Item1.css";
+import { useNavigate } from "react-router-dom";
+import { Button, Modal } from "react-bootstrap";
 
 const Item1 = () => {
+  const navigate = useNavigate()
   const [searchItem, setSearchItem] = useState("")
+  const [show, setShow] = useState(false)
+
+  const handleSingleTransaction = () => {
+    setShow(true)
+    // navigate("/transaction/transact")
+  }
 
   return (
-      <div class="container">
+    <>
+    <div class="container">
         <div class="row">
           <div class="col-xl-12">
             <div class="card">
@@ -89,13 +101,13 @@ const Item1 = () => {
                 </div>
 
                 <h5 class="font-size-16 me-3 mb-0">My Files</h5>
-                <div class="row mt-4">
-                  <div class="col-xl-4 col-sm-6">
+                <div class="row mt-4 justify-content-between align-items-center">
+                  <div class="col-xl-6 col-sm-6">
                     <div class="card shadow-none border">
                       <div class="card-body p-3">
                         <div class="">
                           <div class="dropdown float-end">
-                            <a
+                            {/* <a
                               class="text-muted dropdown-toggle font-size-16"
                               href="#"
                               role="button"
@@ -103,8 +115,8 @@ const Item1 = () => {
                               aria-haspopup="true"
                             >
                               <i class="bx bx-dots-vertical-rounded font-size-20"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end">
+                            </a> */}
+                            {/* <div class="dropdown-menu dropdown-menu-end">
                               <a class="dropdown-item" href="#">
                                 Edit
                               </a>
@@ -114,23 +126,28 @@ const Item1 = () => {
                               <a class="dropdown-item" href="#">
                                 Remove
                               </a>
-                            </div>
+                            </div> */}
+                            <h1>100</h1>
                           </div>
                           <div class="d-flex align-items-center">
                             <div class="avatar align-self-center me-3">
                               <div class="avatar-title rounded bg-soft-primary text-primary font-size-24">
-                                <i class="mdi mdi-google-drive"></i>
+                                {/* <i class="mdi mdi-google-drive"></i> */}
+                                <GrTransaction />
                               </div>
                             </div>
 
                             <div class="flex-1">
-                              <h5 class="font-size-15 mb-1">Google Drive</h5>
-                              <a href="" class="font-size-13 text-muted">
+                              <h5 class="font-size-15 mb-1">All <br /> Transactions</h5>
+                              {/* <a href="" class="font-size-13 text-muted">
                                 <u>View Folder</u>
-                              </a>
+                              </a> */}
                             </div>
                           </div>
-                          <div class="mt-3 pt-1">
+                          <div className="mt-3 pt-1">
+                            <button className="btn btn-primary">View More</button>
+                          </div>
+                          {/* <div class="mt-3 pt-1">
                             <div class="d-flex justify-content-between">
                               <p class="text-muted font-size-13 mb-1">20GB</p>
                               <p class="text-muted font-size-13 mb-1">
@@ -144,13 +161,13 @@ const Item1 = () => {
                                 style={{ width: "90%" }}
                               ></div>
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div class="col-xl-4 col-sm-6">
+                  {/* <div class="col-xl-4 col-sm-6">
                     <div class="card shadow-none border">
                       <div class="card-body p-3">
                         <div class="">
@@ -208,14 +225,15 @@ const Item1 = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
-                  <div class="col-xl-4 col-sm-6">
+                  <div class="col-xl-6 col-sm-6">
                     <div class="card shadow-none border">
                       <div class="card-body p-3">
                         <div class="">
                           <div class="dropdown float-end">
-                            <a
+                            <h1>20</h1>
+                            {/* <a
                               class="text-muted dropdown-toggle font-size-16"
                               href="#"
                               role="button"
@@ -234,23 +252,27 @@ const Item1 = () => {
                               <a class="dropdown-item" href="#">
                                 Remove
                               </a>
-                            </div>
+                            </div> */}
                           </div>
                           <div class="d-flex align-items-center">
                             <div class="avatar align-self-center me-3">
-                              <div class="avatar-title rounded bg-soft-primary text-primary font-size-24">
-                                <i class="mdi mdi-apple-icloud"></i>
+                              <div class="avatar-title rounded bg-soft-danger text-danger font-size-24">
+                                {/* <i class="mdi mdi-apple-icloud"></i> */}
+                                <BsFillExclamationTriangleFill color="red"/>
                               </div>
                             </div>
 
                             <div class="flex-1">
-                              <h5 class="font-size-15 mb-1">One Drive</h5>
-                              <a href="" class="font-size-13 text-muted">
+                              <h5 class="font-size-15 mb-1">Flagged <br /> Transaction</h5>
+                              {/* <a href="" class="font-size-13 text-muted">
                                 <u>View Folder</u>
-                              </a>
+                              </a> */}
                             </div>
                           </div>
-                          <div class="mt-3 pt-1">
+                          <div className="mt-3 pt-1">
+                            <button className="btn btn-primary">View More</button>
+                          </div>
+                          {/* <div class="mt-3 pt-1">
                             <div class="d-flex justify-content-between">
                               <p class="text-muted font-size-13 mb-1">20GB</p>
                               <p class="text-muted font-size-13 mb-1">
@@ -264,7 +286,7 @@ const Item1 = () => {
                                 style={{ width: "90%" }}
                               ></div>
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>
@@ -283,17 +305,17 @@ const Item1 = () => {
                   <table class="table align-middle table-nowrap table-hover mb-0">
                     <thead class="table-light">
                       <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Date modified</th>
-                        <th scope="col">Size</th>
-                        <th scope="col">Members</th>
-                        <th scope="col">Mode</th>
-                        <th scope="col">Mode</th>
-                        <th scope="col">Mode</th>
+                        <th scope="col">Transaction Id</th>
+                        <th scope="col">Account Number</th>
+                        <th scope="col">Transaction Amount</th>
+                        <th scope="col">Account Type</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Account Balance</th>
+                        <th scope="col">Date & Time</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      <tr onClick={handleSingleTransaction}>
                         <td>
                           <a
                             href="javascript: void(0);"
@@ -459,6 +481,71 @@ const Item1 = () => {
           </div>
         </div>
       </div>
+      <Modal show={show} onHide={() => setShow(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Transaction Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div>
+            <div>
+              <strong>
+                Transaction ID:
+              </strong>
+            </div>
+            <div>
+              <strong>
+                Sender ID:
+              </strong>
+            </div>
+            <div>
+              <strong>
+                Sender Account Number:
+              </strong>
+            </div>
+            <div>
+              <strong>
+                Sender Risk Factor:
+              </strong>
+            </div>
+            <div>
+              <strong>
+                Recipient Account Number:
+              </strong>
+            </div>
+            <div>
+              <strong>
+                Recipient Bank:
+              </strong>
+            </div>
+            <div>
+              <strong>
+                Recipient Risk Factor:
+              </strong>
+            </div>
+            <div>
+              <strong>
+                Recipient Account Type:
+              </strong>
+            </div>
+            <div>
+              <strong>
+                Transaction Type:
+              </strong>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShow(false)}>
+            Close
+          </Button>
+          {/* <Button variant="primary" onClick={() => setShow(false)}>
+            Save Changes
+          </Button> */}
+        </Modal.Footer>
+      </Modal>
+    </>
+      
+
   );
 };
 
