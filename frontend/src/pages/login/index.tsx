@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import LoginDetails from "./LoginDetails";
 import { login } from "@/assets";
 import { useAuth } from "@/context/AuthContext";
@@ -6,16 +6,9 @@ import { useEffect } from "react";
 import { Home } from "lucide-react";
 
 const LoginPage = () => {
-  const params = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const { isAuthenticated } = useAuth();
-
-  let currentUser = "";
-
-  if (params.user) {
-    currentUser = params.user.slice(0, 1).toUpperCase() + params.user.slice(1);
-  }
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -45,7 +38,7 @@ const LoginPage = () => {
               <Home className="w-16 h-16 text-white " />
             </Link>
             <div className="flex flex-col w-full mb-3">
-              <LoginDetails user={currentUser} />
+              <LoginDetails />
             </div>
           </div>
         </div>

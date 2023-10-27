@@ -182,16 +182,16 @@
     "type": "function"
   },
   {
-    "inputs": [
+    "inputs": [],
+    "name": "isAdmin",
+    "outputs": [
       {
-        "internalType": "uint256",
-        "name": "_transactionID",
-        "type": "uint256"
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
       }
     ],
-    "name": "markTransactionAsCleared",
-    "outputs": [],
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -208,6 +208,19 @@
       }
     ],
     "name": "setAccountTypeLimit",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_transactionID",
+        "type": "uint256"
+      }
+    ],
+    "name": "toggleTransactionStatus",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
