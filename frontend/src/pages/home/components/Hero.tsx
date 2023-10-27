@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui";
 import { useNavigate } from "react-router-dom";
 
-// import absa from '@/assets/absa.png'
-// import cal from '@/assets/cal.png'
-// import fab from '@/assets/fab.jpg'
-// import cbg from '@/assets/cbg.webp'
-// import stanbic from '@/assets/stanbic.jpg'
+import absa from "@/assets/absa.png";
+import ecobank from "@/assets/ecobank.png";
+import fab from "@/assets/fab.jpg";
+import cbg from "@/assets/cbg.webp";
+import fidelity from "@/assets/fidelity.png";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -42,19 +42,19 @@ const Hero = () => {
 
         <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center font-bold">
           <div className="mb-8 px-8">
-            <p className="text-sm">ABSA</p>
+            <img src={absa} alt="absa" className="w-20 h-20 rounded-md" />
           </div>
           <div className="mb-8 px-8">
-            <p className="text-sm">CBG</p>
+            <img src={cbg} alt="absa" className="w-20 h-20 rounded-md" />
           </div>
           <div className="mb-8 px-8">
-            <p className="text-sm">HFC</p>
+            <img src={fab} alt="absa" className="w-20 h-20 rounded-md" />
           </div>
           <div className="mb-8 px-8">
-            <p className="text-sm">GCB</p>
+            <img src={ecobank} alt="absa" className="w-20 h-20 rounded-md" />
           </div>
           <div className="mb-8 px-8">
-            <p className="text-sm">FAB</p>
+            <img src={fidelity} alt="absa" className="w-20 h-20 rounded-md" />
           </div>
         </div>
       </section>
