@@ -36,24 +36,24 @@ const Hero = () => {
       </div>
 
       <section className="relative z-30 m-auto flex w-[90vw] flex-col items-start justify-center px-10 py-[15vh] md:items-center lg:w-[75vw]">
-        <h6 className="mb-8 font-figTree text-sm font-bold uppercase text-primary/60">
+        <h6 className="text-2xl font-bold uppercase text-primary/60">
           We&apos;re trusted by
         </h6>
 
-        <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center font-bold">
-          <div className="mb-8 px-8">
+        <div className="mx-auto flex gap-x-16 max-w-4xl items-center justify-center font-bold py-12 animate-pulse whitespace-nowrap">
+          <div className="mb-8">
             <img src={absa} alt="absa" className="w-20 h-20 rounded-md" />
           </div>
-          <div className="mb-8 px-8">
+          <div className="mb-8">
             <img src={cbg} alt="absa" className="w-20 h-20 rounded-md" />
           </div>
-          <div className="mb-8 px-8">
+          <div className="mb-8">
             <img src={fab} alt="absa" className="w-20 h-20 rounded-md" />
           </div>
-          <div className="mb-8 px-8">
+          <div className="mb-8">
             <img src={ecobank} alt="absa" className="w-20 h-20 rounded-md" />
           </div>
-          <div className="mb-8 px-8">
+          <div className="mb-8">
             <img src={fidelity} alt="absa" className="w-20 h-20 rounded-md" />
           </div>
         </div>
