@@ -116,6 +116,11 @@
   opacity: 0.15;
 }
 
+.from-orange {
+  --tw-gradient-from: #f59e0b;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
 @media screen and (max-width: 640px) {
   .grid-lines {
     padding: 0;
@@ -123,7 +128,7 @@
 }
 
 .app {
-  @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
+  @apply relative z-10 flex justify-center items-center flex-col mx-auto sm:px-16 px-6;
 }
 
 .black_btn {
@@ -216,4 +221,8 @@
 
 .flex-between {
   @apply flex justify-between items-center;
+}
+
+.glassmorph {
+  @apply bg-opacity-10 bg-gray-50 backdrop-filter backdrop-blur-lg border-0 drop-shadow-lg text-white transition-all duration-500 ease-in-out;
 }

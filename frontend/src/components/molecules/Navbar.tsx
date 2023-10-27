@@ -2,28 +2,28 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 
-import { Link as LinkScroll } from "react-scroll";
+// import { Link as LinkScroll } from "react-scroll";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui";
 
-const navItems = [
-  {
-    name: "Partners",
-    href: "/partners",
-  },
-  {
-    name: "About Us",
-    href: "/about",
-  },
-  {
-    name: "Services",
-    href: "/services",
-  },
-  {
-    name: "FAQs",
-    href: "/faqs",
-  },
-];
+// const navItems = [
+//   {
+//     name: "Partners",
+//     href: "/partners",
+//   },
+//   {
+//     name: "About Us",
+//     href: "/about",
+//   },
+//   {
+//     name: "Services",
+//     href: "/services",
+//   },
+//   {
+//     name: "FAQs",
+//     href: "/faqs",
+//   },
+// ];
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ const NavBar = () => {
     <div
       className={cn(
         "top-0 z-[99999] w-full transition-colors duration-500 ease-in-out",
-        scroll ? "bg-primary fixed top-0" : "bg-transparent"
+        scroll ? "bg-white fixed top-0 shadow-lg" : "bg-transparent"
       )}
     >
       <nav
@@ -57,7 +57,7 @@ const NavBar = () => {
           SmartEyes
         </Link>
 
-        <ul className="hidden flex-row items-center gap-8 lg:flex">
+        {/* <ul className="hidden flex-row items-center gap-8 lg:flex">
           {navItems.map((item, index) => (
             <li key={index}>
               <Link
@@ -68,11 +68,23 @@ const NavBar = () => {
               </Link>
             </li>
           ))}
-        </ul>
+        </ul> */}
 
-        <Button className="tracking-widest uppercase text-sm hidden lg:block">
-          Login
-        </Button>
+        <div className="flex items-center gap-x-6">
+          <Button
+            className="tracking-widest uppercase text-sm hidden lg:block"
+            onClick={() => navigate("/login")}
+          >
+            Login
+          </Button>
+
+          <Button
+            className="tracking-widest uppercase text-sm hidden lg:block bg-transparent text-primary border border-primary"
+            onClick={() => navigate("/signup")}
+          >
+            Sign up
+          </Button>
+        </div>
       </nav>
     </div>
   );
