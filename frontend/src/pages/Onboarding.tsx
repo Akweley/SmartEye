@@ -47,14 +47,18 @@ const Onboarding = () => {
         ethereum as ethers.Eip1193Provider,
       );
       const signer = await provider.getSigner();
+      const accountTypes = Object.entries(data);
 
       if (contract) {
         try {
-          for (const pair of Object.entries(data)) {
+          {
             await contract
               .connect(signer)
               //@ts-ignore
-              .setAccountTypeLimit(pair[0], BigInt(pair[1]));
+              .setAccountTypeLimit(
+                accountTypes[0][0],
+                BigInt(accountTypes[0][1]),
+              );
           }
         } catch (err) {
           console.log(err);
@@ -77,7 +81,7 @@ const Onboarding = () => {
     <div className="mx-auto w-full lg:w-2/4">
       <form onSubmit={handleSubmit} className="w-full mt-10">
         <Card className="w-full">
-          <CardHeader className="font-bold">
+          <CardHeader className="font-bold text-4xl text-center mb-10">
             Onboarding
             <CardDescription>Fill in details below</CardDescription>
           </CardHeader>
@@ -151,8 +155,8 @@ const Onboarding = () => {
               </Select>
             </div>
           </CardContent>
-          <CardFooter>
-            <Button className="">Submit</Button>
+          <CardFooter className="w-full flex items-center flex-col">
+            <Button className="w-4/5">Submit</Button>
             <div className="flex flex-col text-sm mb-5">
               {isSubmitting && (
                 <div className="flex w-full justify-center">

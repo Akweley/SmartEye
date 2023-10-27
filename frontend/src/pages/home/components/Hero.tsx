@@ -11,7 +11,7 @@ const Hero = () => {
     <section className="w-full flex-center flex-col">
       <h1 className="head_text text-center">
         Simplify fraud detection with <br className="max-md:hidden" />
-        <span className="orange_gradient text-center">SmartEyes</span>
+        <span className="orange_gradient text-center">SmartEye</span>
       </h1>
       <p className="desc text-center">
         SmartEyes is a blockchain-based anti money laundering solution that

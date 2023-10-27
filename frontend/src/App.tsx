@@ -12,11 +12,11 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/onboarding" element={<Onboarding />} />
       </Route>
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
       <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/onboarding" element={<Onboarding />} />
     </Routes>
   );
 }

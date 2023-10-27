@@ -34,7 +34,7 @@ const SignUp = () => {
       setError("");
       setIsSubmitting(true);
       const provider = new ethers.BrowserProvider(
-        ethereum as ethers.Eip1193Provider
+        ethereum as ethers.Eip1193Provider,
       );
       const signer = await provider.getSigner();
 
@@ -145,7 +145,7 @@ const SignUp = () => {
                         height="40"
                         width="40"
                         radius="9"
-                        color="#f620e5"
+                        color="black"
                         ariaLabel="three-dots-loading"
                         visible={true}
                       />
