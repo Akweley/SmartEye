@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui";
 
+// import absa from '@/assets/absa.png'
+// import cal from '@/assets/cal.png'
+// import fab from '@/assets/fab.jpg'
+// import cbg from '@/assets/cbg.webp'
+// import stanbic from '@/assets/stanbic.jpg'
+
 const Hero = () => {
   return (
     <section className="w-full flex-center flex-col">
@@ -27,21 +33,21 @@ const Hero = () => {
           We&apos;re trusted by
         </h6>
 
-        <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center">
+        <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center font-bold">
           <div className="mb-8 px-8">
-            <p className="text-sm">25thCentury</p>
+            <p className="text-sm">ABSA</p>
           </div>
           <div className="mb-8 px-8">
-            <p className="text-sm">BuckPress</p>
+            <p className="text-sm">CBG</p>
           </div>
           <div className="mb-8 px-8">
-            <p className="text-sm">MFA</p>
+            <p className="text-sm">HFC</p>
           </div>
           <div className="mb-8 px-8">
-            <p className="text-sm">Ghana.gov</p>
+            <p className="text-sm">GCB</p>
           </div>
           <div className="mb-8 px-8">
-            <p className="text-sm">BNI</p>
+            <p className="text-sm">FAB</p>
           </div>
         </div>
       </section>
