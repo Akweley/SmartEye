@@ -17,7 +17,7 @@ import {
   Button,
 } from "@/components/ui";
 
-const LoginDetails = ({ user }: { user: string }) => {
+const LoginDetails = () => {
   const { ethereum } = useAuth();
   const regRef = useRef<HTMLInputElement | null>(null);
   const [error, setError] = useState("");
@@ -36,7 +36,7 @@ const LoginDetails = ({ user }: { user: string }) => {
       console.log(amlContract);
     } catch (error) {
       console.log(error);
-      setError("An error occured. Submit again");
+      setError("An error occured. Please submit again.");
       setIsSubmitting(false);
       return;
     }
