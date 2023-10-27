@@ -9,7 +9,7 @@ const Pricing = () => {
             Designed for institutions like yours
           </h2>
           <p className="mb-5 sm:text-xl text-black/80 font-light">
-            Here at <span className="font-semibold">VerifyEd&#8482;</span> we
+            Here at <span className="font-semibold">SmartEye&#8482;</span> we
             focus on institutions where technology, innovation, and capital can
             unlock long-term value and drive academic growth.
           </p>
@@ -18,7 +18,7 @@ const Pricing = () => {
           <PricingCard
             title="Individual"
             description="Best option for personal use & for your next project."
-            price="$29"
+            price="GHS0"
             features={[
               "Individual configuration",
               "No setup, or hidden fees",
@@ -32,7 +32,7 @@ const Pricing = () => {
           <PricingCard
             title="Institution"
             description="Relevant for multiple users, extended & premium support."
-            price="$99"
+            price="GHS49"
             features={[
               "Individual configuration",
               "No setup, or hidden fees",
@@ -46,7 +46,7 @@ const Pricing = () => {
           <PricingCard
             title="Enterprise"
             description="Best for large scale uses and extended redistribution rights."
-            price="$499"
+            price="GHS99"
             features={[
               "Individual configuration",
               "No setup, or hidden fees",

@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 
 import { NavBar } from "../molecules";
+import Footer from "../molecules/Footer";
 
 const RootLayout = () => {
   return (
@@ -13,6 +14,7 @@ const RootLayout = () => {
       <div className="app">
         <NavBar />
         <Outlet />
+        <Footer />
       </div>
     </>
   );
