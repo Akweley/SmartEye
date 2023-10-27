@@ -3,6 +3,7 @@ import "./App.css";
 import { RootLayout } from "./components/Layouts";
 
 import { Auth, NotFound, SignUp, Home, Login } from "./pages";
+import Onboarding from "./pages/Onboarding";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       </Route>
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/onboarding" element={<Onboarding />} />
     </Routes>
   );
 }

@@ -28,6 +28,8 @@ const LoginDetails = () => {
 
   const navigate = useNavigate();
 
+  const isOnboarded = localStorage.getItem("isOnboarded");
+
   const validateCredentials = async () => {
     let amlContract;
 
@@ -47,14 +49,25 @@ const LoginDetails = () => {
 
     setIsSubmitting(false);
 
-    isAdmin &&
-      navigate("/dashboard", {
-        state: {
-          address: address,
-          name: name,
-          regNo: regRef.current?.value,
-        },
-      });
+    if (isAdmin) {
+      if (!isOnboarded) {
+        navigate("/onboarding", {
+          state: {
+            address: address,
+            name: name,
+            regNo: regRef.current?.value,
+          },
+        });
+      } else {
+        navigate("/dashboard", {
+          state: {
+            address: address,
+            name: name,
+            regNo: regRef.current?.value,
+          },
+        });
+      }
+    }
 
     setError("Only admins have access!");
   };
@@ -66,7 +79,7 @@ const LoginDetails = () => {
       setError("");
       setIsSubmitting(true);
       const provider = new ethers.BrowserProvider(
-        ethereum as ethers.Eip1193Provider,
+        ethereum as ethers.Eip1193Provider
       );
       const signer = await provider.getSigner();
       setSigner(signer);
