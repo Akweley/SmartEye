@@ -12,7 +12,7 @@
     "amount": 1000.0,
     "transactionType": "Inbound",
     "transactionTime": "2023-10-15 14:30:00",
-    "isAlertMl": false
+    "isAlertMl": true
   },
   {
     "transactionID": 12346,
