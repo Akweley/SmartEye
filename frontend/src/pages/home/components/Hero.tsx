@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui";
 import { useNavigate } from "react-router-dom";
-
 import absa from "@/assets/absa.png";
 import ecobank from "@/assets/ecobank.png";
 import fab from "@/assets/fab.jpg";

@@ -4,10 +4,10 @@
     "senderID": "user123",
     "senderAccountNumber": "12345678",
     "senderAccountType": "Savings",
-    "senderRiskFactor": "Low",
+    "senderRiskFactor": "High",
     "recipientAccountNumber": "87654321",
     "recipientBank": "ABC Bank",
-    "recipientRiskFactor": "Low",
+    "recipientRiskFactor": "High",
     "recipientAccountType": "Savings",
     "amount": 1000.0,
     "transactionType": "Inbound",
@@ -27,7 +27,7 @@
     "amount": 200.0,
     "transactionType": "Outbound",
     "transactionTime": "2023-10-16 12:45:00",
-    "isAlertMl": true
+    "isAlertMl": false
   },
   {
     "transactionID": 12347,
@@ -37,7 +37,7 @@
     "senderRiskFactor": "Low",
     "recipientAccountNumber": "54321987",
     "recipientBank": "MyCreditCard Inc.",
-    "recipientRiskFactor": "N/A",
+    "recipientRiskFactor": "Low",
     "recipientAccountType": "Business",
     "amount": 500.0,
     "transactionType": "Outbound",
@@ -49,15 +49,15 @@
     "senderID": "user123",
     "senderAccountNumber": "12345678",
     "senderAccountType": "Business",
-    "senderRiskFactor": "Medium",
+    "senderRiskFactor": "High",
     "recipientAccountNumber": "98765432",
     "recipientBank": "Electric Company",
-    "recipientRiskFactor": "N/A",
+    "recipientRiskFactor": "High",
     "recipientAccountType": "Current",
-    "amount": 150.0,
+    "amount": 9950.0,
     "transactionType": "Outbound",
     "transactionTime": "2023-10-18 16:00:00",
-    "isAlertMl": false
+    "isAlertMl": true
   },
   {
     "transactionID": 12349,
@@ -72,7 +72,7 @@
     "amount": 1200.0,
     "transactionType": "Inbound",
     "transactionTime": "2023-10-19 11:30:00",
-    "isAlertMl": true
+    "isAlertMl": false
   },
   {
     "transactionID": 12350,
@@ -82,7 +82,7 @@
     "senderRiskFactor": "High",
     "recipientAccountNumber": "54321000",
     "recipientBank": "Retail Shop Inc.",
-    "recipientRiskFactor": "Medium",
+    "recipientRiskFactor": "Low",
     "recipientAccountType": "Business",
     "amount": 800.0,
     "transactionType": "Outbound",
@@ -97,7 +97,7 @@
     "senderRiskFactor": "Low",
     "recipientAccountNumber": "87659876",
     "recipientBank": "Utility Services",
-    "recipientRiskFactor": "N/A",
+    "recipientRiskFactor": "Medium",
     "recipientAccountType": "Utility",
     "amount": 450.0,
     "transactionType": "Outbound",
@@ -124,15 +124,15 @@
     "senderID": "user123",
     "senderAccountNumber": "12345678",
     "senderAccountType": "Savings",
-    "senderRiskFactor": "Low",
+    "senderRiskFactor": "Medium",
     "recipientAccountNumber": "12340000",
     "recipientBank": "Charity Foundation",
-    "recipientRiskFactor": "N/A",
-    "recipientAccountType": "Savings",
-    "amount": 150.0,
+    "recipientRiskFactor": "High",
+    "recipientAccountType": "Business",
+    "amount": 10000.0,
     "transactionType": "Outbound",
     "transactionTime": "2023-10-23 10:15:00",
-    "isAlertMl": false
+    "isAlertMl": true
   },
   {
     "transactionID": 12354,

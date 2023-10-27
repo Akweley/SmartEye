@@ -1,10 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
-
 import { useEffect, useState } from "react";
-
-// import { Link as LinkScroll } from "react-scroll";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui";
+// import logo from "@/assets/logo2.png";
 
 // const navItems = [
 //   {
@@ -72,7 +70,7 @@ const NavBar = () => {
 
         <div className="flex items-center gap-x-6">
           <Button
-            className="tracking-widest uppercase text-sm hidden lg:block"
+            className="tracking-widest uppercase text-sm hidden sm:block"
             onClick={() => navigate("/login")}
           >
             Login
@@ -80,7 +78,7 @@ const NavBar = () => {
 
           <Button
             variant="outline"
-            className="tracking-widest uppercase text-sm hidden lg:block bg-transparent text-primary border border-primary"
+            className="tracking-widest uppercase text-sm hidden sm:block bg-transparent text-primary border border-primary"
             onClick={() => navigate("/signup")}
           >
             Sign up
