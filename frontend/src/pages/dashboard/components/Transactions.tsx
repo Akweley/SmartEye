@@ -37,6 +37,7 @@ import {
   TableRow,
 } from "@/components/ui";
 import { cn } from "@/lib/utils";
+import { useMemo } from "react";
 
 export type Transactions = Transaction[];
 
@@ -76,125 +77,126 @@ const Transactions = ({
   const [flaggedRows, setFlaggedRows] = React.useState<Transaction[]>([]);
 
   const handleFlaggedRows = (row: Transaction) => {
-    // const isExists = flaggedRows.find(
-    //   (r) => r.transactionID === row.transactionID
-    // );
-    // if (isExists) {
-    //   flaggedRows.filter((r) => r !== row);
-    //   return;
-    // }
-    // setFlaggedRows([...flaggedRows, row]);
+    const isExists = flaggedRows.find(
+      (r) => r.transactionID === row.transactionID
+    );
+    if (isExists) {
+      flaggedRows.filter((r) => r !== row);
+      return;
+    }
+    setFlaggedRows([...flaggedRows, row]);
   };
 
-  const columns = [
-    columnHelper.accessor("transactionID", {
-      id: "count",
-      size: 60,
-      sortingFn: (rowA, rowB) => {
-        const numA = rowA.index;
-        const numB = rowB.index;
+  const columns = useMemo(
+    () => [
+      columnHelper.accessor("transactionID", {
+        id: "count",
+        size: 60,
+        sortingFn: (rowA, rowB) => {
+          const numA = rowA.index;
+          const numB = rowB.index;
 
-        return numA < numB ? -1 : numA > numB ? 1 : 0;
-      },
-      header: "No.",
-      cell: ({ row }) => row.index + 1,
-    }),
-    columnHelper.accessor("transactionID", {
-      id: "transactionID",
-      header: "Transaction ID",
-    }),
-    columnHelper.accessor("senderID", {
-      id: "senderID",
-      header: "Sender ID",
-    }),
-    columnHelper.accessor("senderAccountType", {
-      id: "senderAccountType",
-      header: "Sender Account Type",
-    }),
-    columnHelper.accessor("senderRiskFactor", {
-      id: "senderRiskFactor",
-      header: "Sender Risk Factor",
-      cell: ({
-        row: {
-          original: { senderRiskFactor },
+          return numA < numB ? -1 : numA > numB ? 1 : 0;
         },
-      }) => (
-        <span
-          className={cn(
-            "px-2 py-1 rounded-full text-xs font-bold",
-            senderRiskFactor === "Low" && "bg-green-200 text-green-800",
-            senderRiskFactor === "Medium" && "bg-yellow-200 text-yellow-800",
-            senderRiskFactor === "High" && "bg-red-200 text-red-800"
-          )}
-        >
-          {senderRiskFactor}
-        </span>
-      ),
-    }),
-    columnHelper.accessor("recipientAccountNumber", {
-      id: "recipientAccountNumber",
-      header: "Recipient Account Number",
-    }),
-    columnHelper.accessor("recipientBank", {
-      id: "recipientBank",
-      header: "Recipient Bank",
-    }),
-    columnHelper.accessor("recipientRiskFactor", {
-      id: "recipientRiskFactor",
-      header: "Recipient Risk Factor",
-      cell: ({
-        row: {
-          original: { recipientRiskFactor },
-        },
-      }) => (
-        <span
-          className={cn(
-            "px-2 py-1 rounded-full text-xs font-bold",
-            recipientRiskFactor === "Low" && "bg-green-200 text-green-800",
-            recipientRiskFactor === "Medium" && "bg-yellow-200 text-yellow-800",
-            recipientRiskFactor === "High" && "bg-red-200 text-red-800"
-          )}
-        >
-          {recipientRiskFactor}
-        </span>
-      ),
-    }),
-    columnHelper.accessor("recipientAccountType", {
-      id: "recipientAccountType",
-      header: "Recipient Account Type",
-    }),
-    columnHelper.accessor("amount", {
-      id: "amount",
-      header: "Amount",
-    }),
-    columnHelper.accessor("transactionType", {
-      id: "transactionType",
-      header: "Transaction Type",
-    }),
-    columnHelper.accessor("transactionTime", {
-      id: "transactionTime",
-      header: "Transaction Time",
-    }),
-    columnHelper.accessor("isAlertMl", {
-      id: "isAlertMl",
-      header: "Toggle",
-      cell: ({ row }) => (
-        <Switch
-          defaultChecked={row.original.isAlertMl}
-          onCheckedChange={(value) => {
-            console.log(value, {
-              ...row.original,
-              isAlertMl: value,
-            });
-            handleFlaggedRows({
-              ...row.original,
-              isAlertMl: value,
-            });
-          }}
-        />
-      ),
-    }),
-  ];
+        header: "No.",
+        cell: ({ row }) => row.index + 1,
+      }),
+      columnHelper.accessor("transactionID", {
+        id: "transactionID",
+        header: "Transaction ID",
+      }),
+      columnHelper.accessor("senderID", {
+        id: "senderID",
+        header: "Sender ID",
+      }),
+      columnHelper.accessor("senderAccountType", {
+        id: "senderAccountType",
+        header: "Sender Account Type",
+      }),
+      columnHelper.accessor("senderRiskFactor", {
+        id: "senderRiskFactor",
+        header: "Sender Risk Factor",
+        cell: ({
+          row: {
+            original: { senderRiskFactor },
+          },
+        }) => (
+          <span
+            className={cn(
+              "px-2 py-1 rounded-full text-xs font-bold",
+              senderRiskFactor === "Low" && "bg-green-200 text-green-800",
+              senderRiskFactor === "Medium" && "bg-yellow-200 text-yellow-800",
+              senderRiskFactor === "High" && "bg-red-200 text-red-800"
+            )}
+          >
+            {senderRiskFactor}
+          </span>
+        ),
+      }),
+      columnHelper.accessor("recipientAccountNumber", {
+        id: "recipientAccountNumber",
+        header: "Recipient Account Number",
+      }),
+      columnHelper.accessor("recipientBank", {
+        id: "recipientBank",
+        header: "Recipient Bank",
+      }),
+      columnHelper.accessor("recipientRiskFactor", {
+        id: "recipientRiskFactor",
+        header: "Recipient Risk Factor",
+        cell: ({
+          row: {
+            original: { recipientRiskFactor },
+          },
+        }) => (
+          <span
+            className={cn(
+              "px-2 py-1 rounded-full text-xs font-bold",
+              recipientRiskFactor === "Low" && "bg-green-200 text-green-800",
+              recipientRiskFactor === "Medium" &&
+                "bg-yellow-200 text-yellow-800",
+              recipientRiskFactor === "High" && "bg-red-200 text-red-800"
+            )}
+          >
+            {recipientRiskFactor}
+          </span>
+        ),
+      }),
+      columnHelper.accessor("recipientAccountType", {
+        id: "recipientAccountType",
+        header: "Recipient Account Type",
+      }),
+      columnHelper.accessor("amount", {
+        id: "amount",
+        header: "Amount",
+      }),
+      columnHelper.accessor("transactionType", {
+        id: "transactionType",
+        header: "Transaction Type",
+      }),
+      columnHelper.accessor("transactionTime", {
+        id: "transactionTime",
+        header: "Transaction Time",
+      }),
+      columnHelper.accessor("isAlertMl", {
+        id: "isAlertMl",
+        header: "Toggle",
+        cell: ({ row }) => (
+          <Switch
+            defaultChecked={row.original.isAlertMl}
+            //   checked={row.original.isAlertMl}
+            onCheckedChange={(value) => {
+              handleFlaggedRows({
+                ...row.original,
+                isAlertMl: value,
+              });
+            }}
+          />
+        ),
+      }),
+    ],
+    []
+  );
 
   const table = useReactTable({
     data: data,
@@ -216,11 +218,13 @@ const Transactions = ({
   });
 
   const getFlaggedState = (row: Transaction) => {
-    return flaggedRows.find((r) => r.transactionID === row.transactionID);
+    return (
+      flaggedRows.find((r) => r.transactionID === row.transactionID) ||
+      row.isAlertMl
+    );
   };
 
-  console.log(table.getRowModel().rows.map((row) => row.original));
-
+  console.log(flaggedRows);
   return (
     <div className="w-full mt-24 mb-20 text-secondary-foreground">
       <h2 className="text-3xl text-center md:text-left">Transactions</h2>
@@ -228,9 +232,14 @@ const Transactions = ({
         <div className="flex gap-2 w-4/5  md:w-1/2 xl:w-1/4 px-1  py-1  border-2  rounded-lg">
           <Input
             placeholder="Search ..."
-            value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+            value={
+              (table.getColumn("transactionID")?.getFilterValue() as string) ??
+              ""
+            }
             onChange={(event) =>
-              table.getColumn("name")?.setFilterValue(event.target.value)
+              table
+                .getColumn("transactionID")
+                ?.setFilterValue(event.target.value)
             }
             className="border-none px-1 active:border-none max-w-sm"
           />
