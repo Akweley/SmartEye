@@ -38,7 +38,7 @@ const LoginPage = () => {
               <Home className="w-16 h-16 text-white " />
             </Link>
             <div className="flex flex-col w-full mb-3">
-              <LoginDetails user="" />
+              <LoginDetails  />
             </div>
           </div>
         </div>

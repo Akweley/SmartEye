@@ -25,7 +25,7 @@ const LoginDetails = () => {
   const [address, setAddress] = useState("");
   const [name, setName] = useState("");
   const [signer, setSigner] = useState<JsonRpcSigner>();
-  console.log(user);
+
   const navigate = useNavigate();
 
   const validateCredentials = async () => {
