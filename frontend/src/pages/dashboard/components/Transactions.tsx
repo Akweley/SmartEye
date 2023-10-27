@@ -176,7 +176,22 @@ const Transactions = ({
       }),
       columnHelper.accessor("transactionType", {
         id: "transactionType",
-        header: "Transaction Type",
+          header: "Transaction Type",
+          cell: ({
+            row: {
+              original: { transactionType },
+            },
+          }) => (
+            <span
+              className={cn(
+                "text-xs font-bold",
+                transactionType === "Inbound" && "text-green-500",
+                transactionType === "Outbound" && "text-yellow-500"
+              )}
+            >
+              {transactionType}
+            </span>
+          ),
       }),
       columnHelper.accessor("transactionTime", {
         id: "transactionTime",
@@ -187,8 +202,8 @@ const Transactions = ({
         header: "Toggle",
         cell: ({ row }) => (
           <Switch
-            // defaultChecked={row.original.isAlertMl}
-            checked={getFlaggedState(row.original)}
+            defaultChecked={row.original.isAlertMl}
+            checked={getFlaggedState(row.original) || row.original.isAlertMl}
             onCheckedChange={(value) => {
               handleFlaggedRows({
                 ...row.original,
@@ -222,7 +237,10 @@ const Transactions = ({
   });
 
   const getFlaggedState = (row: Transaction) => {
-    return !!flaggedRows.find((r) => r.transactionID === row.transactionID);
+    return (
+      !!flaggedRows.find((r) => r.transactionID === row.transactionID) ||
+      row.isAlertMl
+    );
   };
 
   console.log(flaggedRows);
