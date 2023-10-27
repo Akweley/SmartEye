@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui";
+import { useNavigate } from "react-router-dom";
 
 // import absa from '@/assets/absa.png'
 // import cal from '@/assets/cal.png'
@@ -7,6 +8,7 @@ import { Button } from "@/components/ui";
 // import stanbic from '@/assets/stanbic.jpg'
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section className="w-full flex-center flex-col">
       <h1 className="head_text text-center">
@@ -19,7 +21,12 @@ const Hero = () => {
       </p>
 
       <div className="flex items-center gap-x-6 my-8">
-        <Button className="font-bold rounded-3xl">Get Started</Button>
+        <Button
+          className="font-bold rounded-3xl"
+          onClick={() => navigate("/signup")}
+        >
+          Get Started
+        </Button>
         <Button
           className="font-bold border-primary bg-transparent rounded-3xl"
           variant="outline"
