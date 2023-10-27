@@ -9,14 +9,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui";
-import { Layout } from "lucide-react";
+import Layout from "./components/Layout";
 
 export default function AdminPage() {
   const location = useLocation();
 
-  const { loading, contract } = useQueryContract(location.state.address);
+  //   const { loading, contract } = useQueryContract(location.state.address);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [selectedStudent, setSelectedStudent] = useState<Student>();
+  const loading = false;
 
   return (
     <>
@@ -27,7 +27,7 @@ export default function AdminPage() {
           <div className="flex-1 space-y-12">
             <div className="flex flex-col gap-6 md:flex-row items-center md:justify-between ">
               <h2 className="text-5xl font-bold tracking-tight text-black text-center md:text-left">
-                Welcome Admin!
+                Dashboard
               </h2>
               <div className="flex items-center space-x-2 ">
                 <Button
@@ -36,14 +36,14 @@ export default function AdminPage() {
                 >
                   Add Student
                 </Button>
-                {isModalOpen && (
+                {/* {isModalOpen && (
                   <AddStudentModal
                     contract={contract}
                     setIsOpen={setIsModalOpen}
                     student={selectedStudent}
                     setStudent={setSelectedStudent}
                   />
-                )}
+                )} */}
               </div>
             </div>
             <div className="">
@@ -51,7 +51,7 @@ export default function AdminPage() {
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
-                      School ID
+                      Registration Number
                     </CardTitle>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -69,14 +69,14 @@ export default function AdminPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">
-                      {location.state.id}
+                      {location.state.regNo}
                     </div>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
-                      Name of School
+                      Name of Institution
                     </CardTitle>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +120,8 @@ export default function AdminPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">
-                      {Number(studentCount)}
+                      {/* {Number(studentCount)} */}
+                      Active
                     </div>
                   </CardContent>
                 </Card>
@@ -128,13 +129,13 @@ export default function AdminPage() {
             </div>
           </div>
 
-          <StudentsTable
+          {/* <StudentsTable
             data={studentList}
             onRowSelect={(row) => {
               setIsModalOpen(true);
               setSelectedStudent(row);
             }}
-          />
+          /> */}
         </Layout>
       )}
     </>

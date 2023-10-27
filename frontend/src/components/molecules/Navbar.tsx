@@ -44,13 +44,13 @@ const NavBar = () => {
     <div
       className={cn(
         "top-0 z-[99999] w-full transition-colors duration-500 ease-in-out",
-        scroll ? "bg-white fixed top-0 shadow-lg" : "bg-transparent"
+        scroll ? "bg-white fixed top-0 shadow-lg" : "bg-transparent",
       )}
     >
       <nav
         className={cn(
           "container mx-auto flex items-center justify-between px-7 transition-all duration-300 ease-in-out",
-          scroll ? "py-4" : "py-8"
+          scroll ? "py-4" : "py-8",
         )}
       >
         <Link className="text-3xl font-black tracking-wider" to="/">

@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { RootLayout } from "./components/Layouts";
 
-import { Auth, NotFound, SignUp, Home, Login } from "./pages";
+import { Auth, NotFound, SignUp, Home, Login, Dashboard } from "./pages";
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
       </Route>
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 }

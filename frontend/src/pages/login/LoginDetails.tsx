@@ -56,7 +56,7 @@ const LoginDetails = () => {
         },
       });
 
-    setError("Only admins have access!");
+    setError("Unauthorised access!");
   };
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {

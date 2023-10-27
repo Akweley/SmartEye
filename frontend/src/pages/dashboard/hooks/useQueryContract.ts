@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useAuth } from "@/context/AuthContext";
-import { verifyEd } from "@/contract";
-import { convertBigIntToString } from "@/utils/utils";
+import { AMLContract } from "@/contract";
+// import { convertBigIntToString } from "@/utils/utils";
 import { Contract, ethers } from "ethers";
 import { useEffect, useState } from "react";
 import { Student } from "../components/StudentsTable";
@@ -17,13 +18,15 @@ const useQueryContract = (address: string) => {
   useEffect(() => {
     (async () => {
       if (ethereum) {
-        const provider = new ethers.BrowserProvider(ethereum);
+        const provider = new ethers.BrowserProvider(
+          ethereum as ethers.Eip1193Provider,
+        );
         const signer = await provider.getSigner();
 
         try {
           setLoading(true);
           console.log(address);
-          const contract = await verifyEd(address);
+          const contract = await AMLContract(address);
           let totalStudents;
           let students;
           let approvals;
@@ -62,7 +65,7 @@ const useQueryContract = (address: string) => {
                   // @ts-ignore
                   hash: value[4],
                   file: null,
-                }) as Student,
+                } as Student),
             );
 
             console.log("all students", students);
@@ -88,7 +91,7 @@ const useQueryContract = (address: string) => {
                   // @ts-ignore
                   isApproved: value[1],
                   // @ts-ignore
-                }) as Approval,
+                } as Approval),
             );
 
             console.log(approvals);
