@@ -187,8 +187,7 @@ const Transactions = ({
         header: "Toggle",
         cell: ({ row }) => (
           <Switch
-            defaultChecked={row.original.isAlertMl}
-            //   checked={row.original.isAlertMl}
+            // defaultChecked={row.original.isAlertMl}
             checked={getFlaggedState(row.original)}
             onCheckedChange={(value) => {
               handleFlaggedRows({
@@ -223,10 +222,7 @@ const Transactions = ({
   });
 
   const getFlaggedState = (row: Transaction) => {
-    return (
-      !!flaggedRows.find((r) => r.transactionID === row.transactionID) ||
-      row.isAlertMl
-    );
+    return !!flaggedRows.find((r) => r.transactionID === row.transactionID);
   };
 
   console.log(flaggedRows);
