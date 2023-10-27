@@ -10,10 +10,11 @@ import {
   CardTitle,
 } from "@/components/ui";
 import Layout from "./components/Layout";
+import Transactions from "./components/Transactions";
 
 export default function AdminPage() {
   const location = useLocation();
-
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
   //   const { loading, contract } = useQueryContract(location.state.address);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const loading = false;
@@ -29,22 +30,6 @@ export default function AdminPage() {
               <h2 className="text-5xl font-bold tracking-tight text-black text-center md:text-left">
                 Dashboard
               </h2>
-              <div className="flex items-center space-x-2 ">
-                <Button
-                  className="bg-[#9918b3]"
-                  onClick={() => setIsModalOpen(true)}
-                >
-                  Add Student
-                </Button>
-                {/* {isModalOpen && (
-                  <AddStudentModal
-                    contract={contract}
-                    setIsOpen={setIsModalOpen}
-                    student={selectedStudent}
-                    setStudent={setSelectedStudent}
-                  />
-                )} */}
-              </div>
             </div>
             <div className="">
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -129,13 +114,13 @@ export default function AdminPage() {
             </div>
           </div>
 
-          {/* <StudentsTable
-            data={studentList}
+          <Transactions
+            data={[]}
             onRowSelect={(row) => {
               setIsModalOpen(true);
-              setSelectedStudent(row);
+              setSelectedTransaction(row);
             }}
-          /> */}
+          />
         </Layout>
       )}
     </>

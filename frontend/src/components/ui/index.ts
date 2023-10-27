@@ -8,3 +8,4 @@ export * from "./checkbox";
 export * from "./dropdown-menu";
 export * from "./avatar";
 export * from "./select";
+export * from "./table";
