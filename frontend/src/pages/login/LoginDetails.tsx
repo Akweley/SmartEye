@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-
 import { useAuth } from "@/context/AuthContext";
 import { JsonRpcSigner, ethers } from "ethers";
 import { AMLContract, AMLFactory } from "@/contract";
@@ -20,27 +19,21 @@ import {
 
 const LoginDetails = ({ user }: { user: string }) => {
   const { ethereum } = useAuth();
-  const schoolRef = useRef<HTMLInputElement | null>(null);
-  const studentRef = useRef<HTMLInputElement | null>(null);
-  const addressRef = useRef<HTMLInputElement | null>(null);
-  const pubKeyRef = useRef<HTMLInputElement | null>(null);
+  const regRef = useRef<HTMLInputElement | null>(null);
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [schoolAddress, setSchoolAddress] = useState("");
-  const [schoolName, setSchoolName] = useState("");
+  const [address, setAddress] = useState("");
+  const [name, setName] = useState("");
   const [signer, setSigner] = useState<JsonRpcSigner>();
 
   const navigate = useNavigate();
 
   const validateCredentials = async () => {
-    // const schoolID = schoolRef.current?.value;
-    // const studentID = studentRef.current?.value;
-    const address = addressRef.current?.value;
-    const pubKey = pubKeyRef.current?.value;
-    let verifyEdContract;
+    let amlContract;
 
     try {
-      verifyEdContract = await AMLContract(schoolAddress);
+      amlContract = await AMLContract(address);
+      console.log(amlContract);
     } catch (error) {
       console.log(error);
       setError("An error occured. Submit again");
@@ -48,133 +41,31 @@ const LoginDetails = ({ user }: { user: string }) => {
       return;
     }
 
-    if (user == "Admin") {
+    let isAdmin;
+
+    try {
       setError("");
-      let isAdmin;
-      let totalStudents;
-
-      try {
-        // @ts-ignore
-        isAdmin = await verifyEdContract.connect(signer).isAdmin();
-
-        // console.log(isAdmin);
-      } catch (error) {
-        console.log(error);
-        setError("Error occured. Submit again");
-        setIsSubmitting(false);
-      }
-
-      try {
-        totalStudents = await verifyEdContract
-          //@ts-ignore
-          .connect(signer)
-          //@ts-ignore
-          .getStudentCount();
-        console.log(totalStudents);
-      } catch (error) {
-        console.log(error);
-      }
-
-      setIsSubmitting(false);
-
-      isAdmin &&
-        navigate("/admin", {
-          state: {
-            address: schoolAddress,
-            name: schoolName,
-            id: schoolRef.current?.value,
-            totalStudents: Number(totalStudents),
-          },
-        });
-
-      setError("Only admins have access!");
-    }
-
-    if (user == "Student") {
-      setError("");
-      let isStudent;
-      let id;
-      let _name;
-      let programme;
-      let yearOfCompletion;
-      let hash;
-
-      try {
-        //pass in studentid when change is made
-        // @ts-ignore
-        isStudent = await verifyEdContract.connect(signer).isStudent();
-        console.log(isStudent);
-        if (isStudent) {
-          [id, _name, programme, yearOfCompletion, hash] =
-            await verifyEdContract
-              // @ts-ignore
-              .connect(signer)
-              // @ts-ignore
-              .getStudentDetails(signer?.address);
-
-          console.log(id);
-          console.log(_name);
-        }
-      } catch (error) {
-        console.log(error);
-        setError("Error occured. Submit again");
-        setIsSubmitting(false);
-      }
-
-      setIsSubmitting(false);
-
-      isStudent &&
-        navigate("/student", {
-          state: {
-            address: schoolAddress,
-            details: { id, _name, programme, yearOfCompletion, hash },
-          },
-        });
-
-      setError("Only registered students have access!");
-    }
-
-    if (user == "Guest") {
-      setError("");
-      let isApproved;
-      let id;
-      let _name;
-      let programme;
-      let yearOfCompletion;
-      let hash;
-
-      try {
-        // @ts-ignore
-        isApproved = await verifyEdContract.connect(signer).isApproved(address);
-
-        console.log(isApproved);
-      } catch (error) {
-        console.log(error);
-        setError("Error occured. Submit again");
-        setIsSubmitting(false);
-      }
-
-      if (isApproved) {
-        try {
-          [id, _name, programme, yearOfCompletion, hash] =
-            // @ts-ignore
-            await verifyEdContract.connect(signer).findStudent(address, pubKey);
-
-          setIsSubmitting(false);
-          navigate(`/guest`, {
-            state: {
-              address: schoolAddress,
-              details: { id, _name, programme, yearOfCompletion, hash },
-            },
-          });
-        } catch (error) {
-          setError("Public key does not match");
-          setIsSubmitting(false);
-        }
-      }
-      setError("Unauthoried access!");
+      // @ts-ignore
+      isAdmin = await amlContract.connect(signer).isAdmin();
+      console.log(isAdmin);
+    } catch (error) {
+      console.log(error);
+      setError("Error occured. Submit again");
       setIsSubmitting(false);
     }
+
+    setIsSubmitting(false);
+
+    isAdmin &&
+      navigate("/dashboard", {
+        state: {
+          address: address,
+          name: name,
+          regNo: regRef.current?.value,
+        },
+      });
+
+    setError("Only admins have access!");
   };
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
@@ -184,26 +75,26 @@ const LoginDetails = ({ user }: { user: string }) => {
       setError("");
       setIsSubmitting(true);
       const provider = new ethers.BrowserProvider(
-        ethereum as ethers.Eip1193Provider
+        ethereum as ethers.Eip1193Provider,
       );
       const signer = await provider.getSigner();
       setSigner(signer);
 
-      const schoolID = schoolRef.current?.value;
+      const regNo = regRef.current?.value;
 
-      if (schoolID) {
+      if (regNo) {
         try {
-          const [schAddress, schName] = await AMLFactory.connect(signer)
+          const [address, name] = await AMLFactory.connect(signer)
             //@ts-ignore
-            .getSchoolContract(BigInt(schoolID));
+            .getAMLContract(regNo);
 
-          console.log(schAddress);
-          console.log(schName);
-          setSchoolAddress(schAddress);
-          setSchoolName(schName);
+          console.log(address);
+          console.log(name);
+          setAddress(address);
+          setName(name);
         } catch (error) {
           console.log(error);
-          setError("Invalid School ID");
+          setError("Invalid registration number");
           setIsSubmitting(false);
         }
       }
@@ -212,67 +103,26 @@ const LoginDetails = ({ user }: { user: string }) => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <Card className="w-full shadow-lg border-none py-5">
-        <CardHeader>
-          <CardTitle className="mb-3 text-3xl font-robotoSlab">
+      <Card className="w-full shadow-xl border-none py-5">
+        <CardHeader className="text-center mb-6">
+          <CardTitle className="mb-3 text-3xl  font-robotoSlab">
             Welcome Back!
           </CardTitle>
-          <CardDescription>
-            Enter required details to login as {user}.
-          </CardDescription>
+          <CardDescription>Enter required details to login.</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-2 my-2">
-              <Label htmlFor="schoolId">
-                School ID <span className="text-red-500">*</span>
+              <Label htmlFor="regNo">
+                Registration No. <span className="text-red-500">*</span>
               </Label>
               <Input
                 required
-                id="schoolID"
-                placeholder="Enter the ID of the school"
-                ref={schoolRef}
+                id="regNo"
+                placeholder="Enter the registration number of the institution"
+                ref={regRef}
               />
             </div>
-            {user == "Student" && (
-              <div className="flex flex-col space-y-2 my-2">
-                <Label htmlFor="studentID">
-                  Student ID <span className="text-red-500">*</span>
-                </Label>
-
-                <Input
-                  required
-                  id="studentID"
-                  placeholder="Enter your student ID"
-                  ref={studentRef}
-                />
-              </div>
-            )}
-            {user == "Guest" && (
-              <>
-                <div className="flex flex-col space-y-2 my-2">
-                  <Label htmlFor="address">
-                    Student Address <span className="text-red-500">*</span>
-                  </Label>
-
-                  <Input
-                    required
-                    id="address"
-                    placeholder="Enter the metamask wallet address of student"
-                    ref={addressRef}
-                  />
-                </div>
-                <div className="flex flex-col space-y-2 my-2">
-                  <Label htmlFor="pubKey">Student Public Key</Label>
-
-                  <Input
-                    id="pubKey"
-                    placeholder="Enter the public key of student if given"
-                    ref={pubKeyRef}
-                  />
-                </div>
-              </>
-            )}
           </div>
         </CardContent>
         <CardFooter className="flex  w-full justify-center">

@@ -232,9 +232,7 @@ describe("AMLContract", function () {
       });
 
       it("Should mark a transaction as cleared", async () => {
-        await amlContract
-          .connect(admin)
-          .markTransactionAsCleared(transactionID);
+        await amlContract.connect(admin).toggleTransactionStatus(transactionID);
 
         const transactions = await amlContract.getAllTransactions();
         const clearedTransaction = transactions[transactionID - 1];
@@ -243,9 +241,7 @@ describe("AMLContract", function () {
 
       it("Should revert when a non-admin attempts to mark a transaction as cleared", async () => {
         await expect(
-          amlContract
-            .connect(recipient)
-            .markTransactionAsCleared(transactionID),
+          amlContract.connect(recipient).toggleTransactionStatus(transactionID),
         ).to.be.revertedWith("Unauthorized access!");
       });
 
@@ -253,7 +249,7 @@ describe("AMLContract", function () {
         transactionID = 0;
 
         await expect(
-          amlContract.connect(admin).markTransactionAsCleared(transactionID),
+          amlContract.connect(admin).toggleTransactionStatus(transactionID),
         ).to.be.revertedWith("Invalid transaction ID!");
       });
     });
@@ -302,7 +298,7 @@ describe("AMLContract", function () {
             amount,
             transactionType,
           ),
-      ).to.be.revertedWith("Unauthorized access!");
+      ).to.be.revertedWith("Invalid transaction type!");
     });
 
     it("Should handle a transfer transaction within the account type limit", async () => {
