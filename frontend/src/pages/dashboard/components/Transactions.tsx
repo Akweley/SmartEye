@@ -189,6 +189,7 @@ const Transactions = ({
           <Switch
             defaultChecked={row.original.isAlertMl}
             //   checked={row.original.isAlertMl}
+            checked={getFlaggedState(row.original)}
             onCheckedChange={(value) => {
               handleFlaggedRows({
                 ...row.original,
@@ -199,7 +200,7 @@ const Transactions = ({
         ),
       }),
     ],
-    []
+    [flaggedRows]
   );
 
   const table = useReactTable({
@@ -223,7 +224,7 @@ const Transactions = ({
 
   const getFlaggedState = (row: Transaction) => {
     return (
-      flaggedRows.find((r) => r.transactionID === row.transactionID) ||
+      !!flaggedRows.find((r) => r.transactionID === row.transactionID) ||
       row.isAlertMl
     );
   };
