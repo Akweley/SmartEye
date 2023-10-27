@@ -130,7 +130,7 @@ const LoginDetails = () => {
           </div>
         </CardContent>
         <CardFooter className="flex  w-full justify-center">
-          <Button disabled={isSubmitting} className="px-10 bg-[#9918b3]">
+          <Button disabled={isSubmitting} className="px-10">
             Login
           </Button>
         </CardFooter>
@@ -141,7 +141,7 @@ const LoginDetails = () => {
                 height="40"
                 width="40"
                 radius="9"
-                color="#f620e5"
+                color="text-primary"
                 ariaLabel="three-dots-loading"
                 visible={true}
               />

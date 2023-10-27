@@ -21,7 +21,7 @@ const LoginPage = () => {
   return (
     <div>
       <div className="container bg-white relative min-h-screen items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
-        <div className="donate-bg relative hidden h-full flex-col bg-[#661477] px-20 pt-5 pb-16 text-white dark:border-r lg:flex">
+        <div className="donate-bg relative hidden h-full flex-col bg-primary px-20 pt-5 pb-16 text-white dark:border-r lg:flex">
           <div className="h-full items-center flex justify-center mt-5">
             <div className="flex items-center xl:p-20 justify-center xl:shadow-2xl">
               <img src={login} alt="login" className="w-[600px] h-[500px]" />
@@ -31,14 +31,11 @@ const LoginPage = () => {
 
         <div className="lg:p-8">
           <div className="mx-auto flex w-full flex-col items-center justify-center space-y-6 sm:w-[450px]">
-            <Link
-              to="/"
-              className="drop-shadow-xl bg-[#9918B3] p-6 rounded-full"
-            >
+            <Link to="/" className="drop-shadow-xl bg-primary p-6 rounded-full">
               <Home className="w-16 h-16 text-white " />
             </Link>
             <div className="flex flex-col w-full mb-3">
-              <LoginDetails  />
+              <LoginDetails />
             </div>
           </div>
         </div>
