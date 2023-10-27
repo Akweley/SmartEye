@@ -224,5 +224,5 @@
 }
 
 .glassmorph {
-  @apply bg-opacity-10 bg-gray-50 backdrop-filter backdrop-blur-lg border-0 drop-shadow-lg text-white transition-all duration-500 ease-in-out;
+  @apply bg-opacity-10 bg-black backdrop-filter backdrop-blur-lg border-0 drop-shadow-lg text-white transition-all duration-500 ease-in-out;
 }

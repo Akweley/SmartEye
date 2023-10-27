@@ -5,16 +5,17 @@ const Pricing = () => {
     <section className="glassmorph hover:bg-opacity-10 rounded-lg">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-10">
         <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
-          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-white">
+          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-black">
             Designed for institutions like yours
           </h2>
-          <p className="mb-5 sm:text-xl text-gray-300 font-light">
-            Here at <span className="font-semibold">VerifyEd&#8482;</span> we focus on institutions where technology, innovation,
-            and capital can unlock long-term value and drive academic growth.
+          <p className="mb-5 sm:text-xl text-black/80 font-light">
+            Here at <span className="font-semibold">VerifyEd&#8482;</span> we
+            focus on institutions where technology, innovation, and capital can
+            unlock long-term value and drive academic growth.
           </p>
         </div>
         <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
-        <PricingCard
+          <PricingCard
             title="Individual"
             description="Best option for personal use & for your next project."
             price="$29"
@@ -56,8 +57,7 @@ const Pricing = () => {
             linkText="Get started"
           />
         </div>
-        </div>
-
+      </div>
     </section>
   );
 };

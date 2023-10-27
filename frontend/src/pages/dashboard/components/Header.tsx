@@ -9,7 +9,7 @@ const Header = () => {
         <div className="md:mx-0 lg:mx-auto lg:px-8 py-2 w-full flex justify-between items-center">
           <Link to="/">
             <span className="font-bold text-white text-3xl hover:text-[#f59e0b]  transition-all duration-300 ease-in-out">
-              SmartEye
+              SmartEye&#8482;
             </span>
           </Link>
           <UserNav />

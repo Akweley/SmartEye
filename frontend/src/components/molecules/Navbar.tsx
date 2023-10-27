@@ -54,7 +54,7 @@ const NavBar = () => {
         )}
       >
         <Link className="text-3xl font-black hover:text-[#f59e0b]  " to="/">
-          SmartEye
+          SmartEye&#8482;
         </Link>
 
         {/* <ul className="hidden flex-row items-center gap-8 lg:flex">

@@ -27,7 +27,7 @@ function PricingCard({
           <li key={index} className="flex items-center space-x-3">
             <svg
               className="flex-shrink-0 w-5 h-5 text-primary "
-              fill="#9918b3"
+              fill="orange"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
             >
