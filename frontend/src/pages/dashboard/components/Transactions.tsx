@@ -1,9 +1,8 @@
 import * as React from "react";
 
-import { ChevronDown, Link, Search } from "lucide-react";
+import { ChevronDown, Search } from "lucide-react";
 
 import {
-  ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
@@ -14,6 +13,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
+  createColumnHelper,
 } from "@tanstack/react-table";
 import {
   Button,
@@ -28,6 +28,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  Switch,
   Table,
   TableBody,
   TableCell,
@@ -35,60 +36,34 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui";
+import { cn } from "@/lib/utils";
 
-export interface Student {
-  file: File | null;
-  hash: string | undefined;
-  programme: string;
-  name: string;
-  studentID: string;
-  yearOfCompletion: string;
+export type Transactions = Transaction[];
+
+export interface Transaction {
+  transactionID: number;
+  senderID: string;
+  senderAccountNumber: string;
+  senderAccountType: string;
+  senderRiskFactor: string;
+  recipientAccountNumber: string;
+  recipientBank: string;
+  recipientRiskFactor: string;
+  recipientAccountType: string;
+  amount: number;
+  transactionType: string;
+  transactionTime: string;
+  isAlertMl: boolean;
 }
 
-const columns: ColumnDef<Student>[] = [
-  {
-    header: "ID",
-    accessorKey: "studentID",
-    cell: ({ row }) => (
-      <div className="text-left">{Number(row.getValue("studentID"))}</div>
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    accessorKey: "name",
-    header: "Name",
-    cell: ({ row }) => <div className="">{row.getValue("name")}</div>,
-  },
-  {
-    accessorKey: "programme",
-    header: "Programme",
-    cell: ({ row }) => <div className="">{row.getValue("programme")}</div>,
-  },
-  {
-    accessorKey: "yearOfCompletion",
-    header: () => "Year of Completion",
-    cell: ({ row }) => (
-      <div className="text-left">{row.getValue("yearOfCompletion")}</div>
-    ),
-  },
-  {
-    accessorKey: "hash",
-    header: () => "Transcript",
-    cell: ({}) => (
-      <div className="flex justify-center">
-        <Link size="16" className="mr-2 text-primary" />
-      </div>
-    ),
-  },
-];
+const columnHelper = createColumnHelper<Transaction>();
 
 const Transactions = ({
   onRowSelect,
   data,
 }: {
-  onRowSelect: (row: Student) => void;
-  data: Student[];
+  onRowSelect: (row: Transaction) => void;
+  data: Transaction[];
 }) => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -97,6 +72,129 @@ const Transactions = ({
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+
+  const [flaggedRows, setFlaggedRows] = React.useState<Transaction[]>([]);
+
+  const handleFlaggedRows = (row: Transaction) => {
+    // const isExists = flaggedRows.find(
+    //   (r) => r.transactionID === row.transactionID
+    // );
+    // if (isExists) {
+    //   flaggedRows.filter((r) => r !== row);
+    //   return;
+    // }
+    // setFlaggedRows([...flaggedRows, row]);
+  };
+
+  const columns = [
+    columnHelper.accessor("transactionID", {
+      id: "count",
+      size: 60,
+      sortingFn: (rowA, rowB) => {
+        const numA = rowA.index;
+        const numB = rowB.index;
+
+        return numA < numB ? -1 : numA > numB ? 1 : 0;
+      },
+      header: "No.",
+      cell: ({ row }) => row.index + 1,
+    }),
+    columnHelper.accessor("transactionID", {
+      id: "transactionID",
+      header: "Transaction ID",
+    }),
+    columnHelper.accessor("senderID", {
+      id: "senderID",
+      header: "Sender ID",
+    }),
+    columnHelper.accessor("senderAccountType", {
+      id: "senderAccountType",
+      header: "Sender Account Type",
+    }),
+    columnHelper.accessor("senderRiskFactor", {
+      id: "senderRiskFactor",
+      header: "Sender Risk Factor",
+      cell: ({
+        row: {
+          original: { senderRiskFactor },
+        },
+      }) => (
+        <span
+          className={cn(
+            "px-2 py-1 rounded-full text-xs font-bold",
+            senderRiskFactor === "Low" && "bg-green-200 text-green-800",
+            senderRiskFactor === "Medium" && "bg-yellow-200 text-yellow-800",
+            senderRiskFactor === "High" && "bg-red-200 text-red-800"
+          )}
+        >
+          {senderRiskFactor}
+        </span>
+      ),
+    }),
+    columnHelper.accessor("recipientAccountNumber", {
+      id: "recipientAccountNumber",
+      header: "Recipient Account Number",
+    }),
+    columnHelper.accessor("recipientBank", {
+      id: "recipientBank",
+      header: "Recipient Bank",
+    }),
+    columnHelper.accessor("recipientRiskFactor", {
+      id: "recipientRiskFactor",
+      header: "Recipient Risk Factor",
+      cell: ({
+        row: {
+          original: { recipientRiskFactor },
+        },
+      }) => (
+        <span
+          className={cn(
+            "px-2 py-1 rounded-full text-xs font-bold",
+            recipientRiskFactor === "Low" && "bg-green-200 text-green-800",
+            recipientRiskFactor === "Medium" && "bg-yellow-200 text-yellow-800",
+            recipientRiskFactor === "High" && "bg-red-200 text-red-800"
+          )}
+        >
+          {recipientRiskFactor}
+        </span>
+      ),
+    }),
+    columnHelper.accessor("recipientAccountType", {
+      id: "recipientAccountType",
+      header: "Recipient Account Type",
+    }),
+    columnHelper.accessor("amount", {
+      id: "amount",
+      header: "Amount",
+    }),
+    columnHelper.accessor("transactionType", {
+      id: "transactionType",
+      header: "Transaction Type",
+    }),
+    columnHelper.accessor("transactionTime", {
+      id: "transactionTime",
+      header: "Transaction Time",
+    }),
+    columnHelper.accessor("isAlertMl", {
+      id: "isAlertMl",
+      header: "Toggle",
+      cell: ({ row }) => (
+        <Switch
+          defaultChecked={row.original.isAlertMl}
+          onCheckedChange={(value) => {
+            console.log(value, {
+              ...row.original,
+              isAlertMl: value,
+            });
+            handleFlaggedRows({
+              ...row.original,
+              isAlertMl: value,
+            });
+          }}
+        />
+      ),
+    }),
+  ];
 
   const table = useReactTable({
     data: data,
@@ -116,6 +214,13 @@ const Transactions = ({
       rowSelection,
     },
   });
+
+  const getFlaggedState = (row: Transaction) => {
+    return flaggedRows.find((r) => r.transactionID === row.transactionID);
+  };
+
+  console.log(table.getRowModel().rows.map((row) => row.original));
+
   return (
     <div className="w-full mt-24 mb-20 text-secondary-foreground">
       <h2 className="text-3xl text-center md:text-left">Transactions</h2>
@@ -187,7 +292,11 @@ const Transactions = ({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  className="cursor-pointer"
+                  className={cn(
+                    "cursor-pointer",
+                    getFlaggedState(row.original) &&
+                      "bg-red-200/40 text-red-800"
+                  )}
                   onClick={() => onRowSelect(row.original)}
                 >
                   {row.getVisibleCells().map((cell) => (

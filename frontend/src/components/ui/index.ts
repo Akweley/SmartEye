@@ -9,3 +9,4 @@ export * from "./dropdown-menu";
 export * from "./avatar";
 export * from "./select";
 export * from "./table";
+export * from "./switch";

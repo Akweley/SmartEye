@@ -10,11 +10,14 @@ import {
   CardTitle,
 } from "@/components/ui";
 import Layout from "./components/Layout";
-import Transactions from "./components/Transactions";
+import Transactions, { Transaction } from "./components/Transactions";
+
+import transactions from "@/database/index.json";
 
 export default function AdminPage() {
   const location = useLocation();
-  const [selectedTransaction, setSelectedTransaction] = useState(null);
+  const [selectedTransaction, setSelectedTransaction] =
+    useState<Transaction | null>(null);
   //   const { loading, contract } = useQueryContract(location.state.address);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const loading = false;
@@ -115,7 +118,7 @@ export default function AdminPage() {
           </div>
 
           <Transactions
-            data={[]}
+            data={transactions as Transaction[]}
             onRowSelect={(row) => {
               setIsModalOpen(true);
               setSelectedTransaction(row);
