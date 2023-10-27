@@ -53,8 +53,8 @@ const NavBar = () => {
           scroll ? "py-4" : "py-8",
         )}
       >
-        <Link className="text-3xl font-black tracking-wider" to="/">
-          SmartEyes
+        <Link className="text-3xl font-black hover:text-[#f59e0b]  " to="/">
+          SmartEye
         </Link>
 
         {/* <ul className="hidden flex-row items-center gap-8 lg:flex">
@@ -79,6 +79,7 @@ const NavBar = () => {
           </Button>
 
           <Button
+            variant="outline"
             className="tracking-widest uppercase text-sm hidden lg:block bg-transparent text-primary border border-primary"
             onClick={() => navigate("/signup")}
           >

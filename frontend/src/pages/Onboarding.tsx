@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import {
   Card,
   CardHeader,
@@ -13,31 +14,74 @@ import {
   CardFooter,
   Button,
 } from "@/components/ui";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import useQueryContract from "./dashboard/hooks/useQueryContract";
+import { ethers } from "ethers";
+import { useAuth } from "@/context/AuthContext";
+import { ThreeDots } from "react-loader-spinner";
 
 const Onboarding = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [referral, setReferral] = useState("");
+  const { contract } = useQueryContract(location.state.address);
+  const { ethereum } = useAuth();
   const [data, setData] = useState({
     savings: 0,
     current: 0,
     student: 0,
     business: 0,
-    referral: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  console.log(referral);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function handleSubmit(e: any) {
+  async function handleSubmit(e: any) {
     e.preventDefault();
+    setIsSubmitting(true);
+
+    if (ethereum) {
+      const provider = new ethers.BrowserProvider(
+        ethereum as ethers.Eip1193Provider,
+      );
+      const signer = await provider.getSigner();
+      const accountTypes = Object.entries(data);
+
+      if (contract) {
+        try {
+          {
+            await contract
+              .connect(signer)
+              //@ts-ignore
+              .setAccountTypeLimit(
+                accountTypes[0][0],
+                BigInt(accountTypes[0][1]),
+              );
+          }
+        } catch (err) {
+          console.log(err);
+          setIsSubmitting(false);
+        }
+      }
+    }
     localStorage.setItem("isOnboarded", "true");
-    navigate("/dashboard");
+
+    navigate("/dashboard", {
+      state: {
+        address: location.state.address,
+        name: location.state.name,
+        regNo: location.state.regNo,
+      },
+    });
   }
 
   return (
     <div className="mx-auto w-full lg:w-2/4">
       <form onSubmit={handleSubmit} className="w-full mt-10">
         <Card className="w-full">
-          <CardHeader className="font-bold">
+          <CardHeader className="font-bold text-4xl text-center mb-10">
             Onboarding
             <CardDescription>Fill in details below</CardDescription>
           </CardHeader>
@@ -96,7 +140,7 @@ const Onboarding = () => {
               <Select
                 required
                 onValueChange={(value) => {
-                  setData({ ...data, referral: value });
+                  setReferral(value);
                 }}
               >
                 <SelectTrigger id="referral">
@@ -111,8 +155,22 @@ const Onboarding = () => {
               </Select>
             </div>
           </CardContent>
-          <CardFooter>
-            <Button className="">Submit</Button>
+          <CardFooter className="w-full flex items-center flex-col">
+            <Button className="w-4/5">Submit</Button>
+            <div className="flex flex-col text-sm mb-5">
+              {isSubmitting && (
+                <div className="flex w-full justify-center">
+                  <ThreeDots
+                    height="40"
+                    width="40"
+                    radius="9"
+                    color="#221621"
+                    ariaLabel="three-dots-loading"
+                    visible={true}
+                  />
+                </div>
+              )}
+            </div>
           </CardFooter>
         </Card>
       </form>

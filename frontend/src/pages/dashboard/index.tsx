@@ -1,14 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useLocation } from "react-router-dom";
-import useQueryContract from "./hooks/useQueryContract";
+
 import { useState } from "react";
 import FullPageLoader from "@/components/molecules/FullPageLoader";
-import {
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
 import Layout from "./components/Layout";
 import Transactions, { Transaction } from "./components/Transactions";
 
@@ -33,6 +28,7 @@ export default function AdminPage() {
               <h2 className="text-5xl font-bold tracking-tight text-black text-center md:text-left">
                 Dashboard
               </h2>
+              <div className="flex items-center space-x-2 "></div>
             </div>
             <div className="">
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -45,7 +41,7 @@ export default function AdminPage() {
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke="#9918b3"
+                      stroke="black"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth="2"
@@ -70,7 +66,7 @@ export default function AdminPage() {
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke="#9918b3"
+                      stroke="black"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth="2"
@@ -88,14 +84,14 @@ export default function AdminPage() {
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
-                      Total Number of Students
+                      Flagging Mode
                     </CardTitle>
 
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke="#9918b3"
+                      stroke="black"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth="2"
