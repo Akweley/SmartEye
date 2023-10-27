@@ -33,6 +33,7 @@ const Auth = () => {
         state: { from: location },
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

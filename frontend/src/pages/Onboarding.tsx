@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import {
   Card,
   CardHeader,
@@ -13,24 +14,63 @@ import {
   CardFooter,
   Button,
 } from "@/components/ui";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import useQueryContract from "./dashboard/hooks/useQueryContract";
+import { ethers } from "ethers";
+import { useAuth } from "@/context/AuthContext";
+import { ThreeDots } from "react-loader-spinner";
 
 const Onboarding = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [referral, setReferral] = useState("");
+  const { contract } = useQueryContract(location.state.address);
+  const { ethereum } = useAuth();
   const [data, setData] = useState({
     savings: 0,
     current: 0,
     student: 0,
     business: 0,
-    referral: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  console.log(referral);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function handleSubmit(e: any) {
+  async function handleSubmit(e: any) {
     e.preventDefault();
+    setIsSubmitting(true);
+
+    if (ethereum) {
+      const provider = new ethers.BrowserProvider(
+        ethereum as ethers.Eip1193Provider,
+      );
+      const signer = await provider.getSigner();
+
+      if (contract) {
+        try {
+          for (const pair of Object.entries(data)) {
+            await contract
+              .connect(signer)
+              //@ts-ignore
+              .setAccountTypeLimit(pair[0], BigInt(pair[1]));
+          }
+        } catch (err) {
+          console.log(err);
+          setIsSubmitting(false);
+        }
+      }
+    }
     localStorage.setItem("isOnboarded", "true");
-    navigate("/dashboard");
+
+    navigate("/dashboard", {
+      state: {
+        address: location.state.address,
+        name: location.state.name,
+        regNo: location.state.regNo,
+      },
+    });
   }
 
   return (
@@ -96,7 +136,7 @@ const Onboarding = () => {
               <Select
                 required
                 onValueChange={(value) => {
-                  setData({ ...data, referral: value });
+                  setReferral(value);
                 }}
               >
                 <SelectTrigger id="referral">
@@ -113,6 +153,20 @@ const Onboarding = () => {
           </CardContent>
           <CardFooter>
             <Button className="">Submit</Button>
+            <div className="flex flex-col text-sm mb-5">
+              {isSubmitting && (
+                <div className="flex w-full justify-center">
+                  <ThreeDots
+                    height="40"
+                    width="40"
+                    radius="9"
+                    color="#221621"
+                    ariaLabel="three-dots-loading"
+                    visible={true}
+                  />
+                </div>
+              )}
+            </div>
           </CardFooter>
         </Card>
       </form>

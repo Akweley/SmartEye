@@ -4,15 +4,12 @@ import { AMLContract } from "@/contract";
 // import { convertBigIntToString } from "@/utils/utils";
 import { Contract, ethers } from "ethers";
 import { useEffect, useState } from "react";
-import { Student } from "../components/StudentsTable";
-import { Approval } from "../components/Approvals";
 
 const useQueryContract = (address: string) => {
   const [contract, setContract] = useState<Contract>();
   const [loading, setLoading] = useState(false);
-  const [studentList, setStudentList] = useState<Student[]>([]);
-  const [studentCount, setStudentCount] = useState(null);
-  const [approvalList, setApprovalList] = useState<Approval[]>([]);
+  // const [txns, setTxns] = useState([]);
+
   const { ethereum } = useAuth();
 
   useEffect(() => {
@@ -27,76 +24,34 @@ const useQueryContract = (address: string) => {
           setLoading(true);
           console.log(address);
           const contract = await AMLContract(address);
-          let totalStudents;
-          let students;
-          let approvals;
-
           console.log(contract);
           setContract(contract);
 
-          //@ts-ignore
-          const isAdmin = await contract.connect(signer).isAdmin();
+          const txnsProxy = await contract
+            .connect(signer)
+            //@ts-ignore
+            .getTransactions();
 
-          //@ts-ignore
-          const isStudent = await contract.connect(signer).isStudent();
+          console.log(txnsProxy);
 
-          if (isAdmin) {
-            totalStudents = await contract
-              ?.connect(signer)
-              //@ts-ignore
-              .getStudentCount();
-            setStudentCount(totalStudents);
-
-            const studentsProxy = await contract
-              .connect(signer)
-              //@ts-ignore
-              .getStudentList();
-            students = Object.values(studentsProxy).map(
-              (value) =>
-                ({
-                  // @ts-ignore
-                  studentID: convertBigIntToString(value[0]),
-                  // @ts-ignore
-                  yearOfCompletion: convertBigIntToString(value[1]),
-                  // @ts-ignore
-                  name: value[2],
-                  // @ts-ignore
-                  programme: value[3],
-                  // @ts-ignore
-                  hash: value[4],
-                  file: null,
-                } as Student),
-            );
-
-            console.log("all students", students);
-            setStudentList(students);
-          }
-
-          if (isStudent) {
-            // getStudentsList returns a proxy object
-
-            const approvalProxy = await contract
-              .connect(signer)
-              //@ts-ignore
-              .getApprovalsList();
-            console.log(approvalProxy);
-            // setApprovalList(approvalProxy);
-
-            approvals = Object.values(approvalProxy).map(
-              (value, index) =>
-                ({
-                  id: String(index + 1),
-                  // @ts-ignore
-                  account: value[0],
-                  // @ts-ignore
-                  isApproved: value[1],
-                  // @ts-ignore
-                } as Approval),
-            );
-
-            console.log(approvals);
-            setApprovalList(approvals);
-          }
+          //  const transactions = Object.values(txnsProxy).map(
+          //     (value) =>
+          //       ({
+          //         // @ts-ignore
+          //         studentID: convertBigIntToString(value[0]),
+          //         // @ts-ignore
+          //         yearOfCompletion: convertBigIntToString(value[1]),
+          //         // @ts-ignore
+          //         name: value[2],
+          //         // @ts-ignore
+          //         programme: value[3],
+          //         // @ts-ignore
+          //         hash: value[4],
+          //         file: null,
+          //       } ),
+          // );
+          // console.log(transactions);
+          // setTxns(transactions);
         } catch (error) {
           console.log(error);
           setLoading(false);
@@ -106,7 +61,7 @@ const useQueryContract = (address: string) => {
     })();
   }, [ethereum, address]);
 
-  return { loading, contract, studentList, studentCount, approvalList };
+  return { loading, contract };
 };
 
 export default useQueryContract;
