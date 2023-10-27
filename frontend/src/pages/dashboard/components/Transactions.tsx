@@ -81,7 +81,11 @@ const Transactions = ({
       (r) => r.transactionID === row.transactionID
     );
     if (isExists) {
-      flaggedRows.filter((r) => r !== row);
+      console.log("exists");
+      const filteredFlaggedRows = flaggedRows.filter(
+        (r) => r.transactionID !== row.transactionID
+      );
+      setFlaggedRows(filteredFlaggedRows);
       return;
     }
     setFlaggedRows([...flaggedRows, row]);
@@ -183,8 +187,8 @@ const Transactions = ({
         header: "Toggle",
         cell: ({ row }) => (
           <Switch
-            defaultChecked={row.original.isAlertMl}
-            //   checked={row.original.isAlertMl}
+            // defaultChecked={row.original.isAlertMl}
+            checked={getFlaggedState(row.original)}
             onCheckedChange={(value) => {
               handleFlaggedRows({
                 ...row.original,
@@ -195,7 +199,7 @@ const Transactions = ({
         ),
       }),
     ],
-    []
+    [flaggedRows]
   );
 
   const table = useReactTable({
@@ -218,10 +222,7 @@ const Transactions = ({
   });
 
   const getFlaggedState = (row: Transaction) => {
-    return (
-      flaggedRows.find((r) => r.transactionID === row.transactionID) ||
-      row.isAlertMl
-    );
+    return !!flaggedRows.find((r) => r.transactionID === row.transactionID);
   };
 
   console.log(flaggedRows);
