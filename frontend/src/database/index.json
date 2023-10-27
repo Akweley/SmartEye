@@ -1,6 +1,6 @@
 [
   {
-    "Transaction ID": 12345,
+    "transactionID": 12345,
     "senderID": "user123",
     "senderAccountNumber": "12345678",
     "senderAccountType": "Savings",
@@ -11,10 +11,11 @@
     "recipientAccountType": "Savings",
     "amount": 1000.0,
     "transactionType": "Inbound",
-    "Transaction Time": "2023-10-15 14:30:00"
+    "transactionTime": "2023-10-15 14:30:00",
+    "isAlertMl": false
   },
   {
-    "Transaction ID": 12346,
+    "transactionID": 12346,
     "senderID": "user123",
     "senderAccountNumber": "12345678",
     "senderAccountType": "Savings",
@@ -25,10 +26,11 @@
     "recipientAccountType": "Current",
     "amount": 200.0,
     "transactionType": "Outbound",
-    "Transaction Time": "2023-10-16 12:45:00"
+    "transactionTime": "2023-10-16 12:45:00",
+    "isAlertMl": true
   },
   {
-    "Transaction ID": 12347,
+    "transactionID": 12347,
     "senderID": "user123",
     "senderAccountNumber": "12345678",
     "senderAccountType": "Savings",
@@ -39,10 +41,11 @@
     "recipientAccountType": "Business",
     "amount": 500.0,
     "transactionType": "Outbound",
-    "Transaction Time": "2023-10-17 09:15:00"
+    "transactionTime": "2023-10-17 09:15:00",
+    "isAlertMl": false
   },
   {
-    "Transaction ID": 12348,
+    "transactionID": 12348,
     "senderID": "user123",
     "senderAccountNumber": "12345678",
     "senderAccountType": "Business",
@@ -53,10 +56,11 @@
     "recipientAccountType": "Current",
     "amount": 150.0,
     "transactionType": "Outbound",
-    "Transaction Time": "2023-10-18 16:00:00"
+    "transactionTime": "2023-10-18 16:00:00",
+    "isAlertMl": false
   },
   {
-    "Transaction ID": 12349,
+    "transactionID": 12349,
     "senderID": "user123",
     "senderAccountNumber": "12345678",
     "senderAccountType": "Savings",
@@ -67,10 +71,11 @@
     "recipientAccountType": "Student",
     "amount": 1200.0,
     "transactionType": "Inbound",
-    "Transaction Time": "2023-10-19 11:30:00"
+    "transactionTime": "2023-10-19 11:30:00",
+    "isAlertMl": true
   },
   {
-    "Transaction ID": 12350,
+    "transactionID": 12350,
     "senderID": "user123",
     "senderAccountNumber": "12345678",
     "senderAccountType": "Business",
@@ -81,10 +86,11 @@
     "recipientAccountType": "Business",
     "amount": 800.0,
     "transactionType": "Outbound",
-    "Transaction Time": "2023-10-20 14:20:00"
+    "transactionTime": "2023-10-20 14:20:00",
+    "isAlertMl": true
   },
   {
-    "Transaction ID": 12351,
+    "transactionID": 12351,
     "senderID": "user123",
     "senderAccountNumber": "12345678",
     "senderAccountType": "Savings",
@@ -95,10 +101,11 @@
     "recipientAccountType": "Utility",
     "amount": 450.0,
     "transactionType": "Outbound",
-    "Transaction Time": "2023-10-21 08:45:00"
+    "transactionTime": "2023-10-21 08:45:00",
+    "isAlertMl": false
   },
   {
-    "Transaction ID": 12352,
+    "transactionID": 12352,
     "senderID": "user123",
     "senderAccountNumber": "12345678",
     "senderAccountType": "Savings",
@@ -109,10 +116,11 @@
     "recipientAccountType": "Savings",
     "amount": 300.0,
     "transactionType": "Outbound",
-    "Transaction Time": "2023-10-22 17:30:00"
+    "transactionTime": "2023-10-22 17:30:00",
+    "isAlertMl": false
   },
   {
-    "Transaction ID": 12353,
+    "transactionID": 12353,
     "senderID": "user123",
     "senderAccountNumber": "12345678",
     "senderAccountType": "Savings",
@@ -123,10 +131,11 @@
     "recipientAccountType": "Savings",
     "amount": 150.0,
     "transactionType": "Outbound",
-    "Transaction Time": "2023-10-23 10:15:00"
+    "transactionTime": "2023-10-23 10:15:00",
+    "isAlertMl": true
   },
   {
-    "Transaction ID": 12354,
+    "transactionID": 12354,
     "senderID": "user123",
     "senderAccountNumber": "12345678",
     "senderAccountType": "Savings",
@@ -137,6 +146,7 @@
     "recipientAccountType": "Student",
     "amount": 1800.0,
     "transactionType": "Inbound",
-    "Transaction Time": "2023-10-24 09:30:00"
+    "transactionTime": "2023-10-24 09:30:00",
+    "isAlertMl": false
   }
 ]
