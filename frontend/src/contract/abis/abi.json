@@ -1,0 +1,215 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_admin",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "transactionID",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "reason",
+        "type": "string"
+      }
+    ],
+    "name": "MLAlert",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "name": "accountTypeLimits",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_senderID",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_senderAccountNumber",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_senderAccountType",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_senderRiskFactor",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_recipientAccountNumber",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_recipientBank",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_recipientRiskFactor",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_recipientAccountType",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_transactionType",
+        "type": "string"
+      }
+    ],
+    "name": "checkMLStatus",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllTransactions",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "transactionID",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "senderID",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "senderAccountNumber",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "senderAccountType",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "senderRiskFactor",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "recipientAccountNumber",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "recipientBank",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "recipientRiskFactor",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "recipientAccountType",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "transactionType",
+            "type": "string"
+          },
+          {
+            "internalType": "bool",
+            "name": "isMLAlert",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct AMLContract.Transaction[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_transactionID",
+        "type": "uint256"
+      }
+    ],
+    "name": "markTransactionAsCleared",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "accountType",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "limit",
+        "type": "uint256"
+      }
+    ],
+    "name": "setAccountTypeLimit",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

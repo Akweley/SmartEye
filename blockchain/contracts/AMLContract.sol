@@ -93,7 +93,7 @@ contract AMLContract {
         string memory _recipientAccountType,
         uint256 _amount,
         string memory _transactionType
-    ) public onlyOwner {
+    ) public {
         require(
             keccak256(abi.encodePacked(_transactionType)) ==
                 keccak256(abi.encodePacked("inbound")) ||
