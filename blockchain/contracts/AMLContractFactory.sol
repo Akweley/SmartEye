@@ -38,6 +38,11 @@ contract AMLContractFactory {
     function getAMLContract(
         string memory _registrationNumber
     ) public view returns (address, string memory) {
+        require(
+            deployedContracts[_registrationNumber].contractAddress !=
+                address(0),
+            "Invalid Registration Number!"
+        );
         return (
             deployedContracts[_registrationNumber].contractAddress,
             deployedContracts[_registrationNumber].name

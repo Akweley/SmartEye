@@ -34,6 +34,11 @@ contract AMLContract {
         _;
     }
 
+    //Verification functions
+    function isAdmin() public view returns (bool) {
+        return (owner == msg.sender);
+    }
+
     function isOutBound(
         string memory _senderAccountType,
         uint256 _amount,
@@ -134,13 +139,15 @@ contract AMLContract {
         }
     }
 
-    // Function to mark a transaction as cleared
-    function markTransactionAsCleared(uint256 _transactionID) public onlyOwner {
+    // Function to toggle transaction status as cleared or not
+    function toggleTransactionStatus(uint256 _transactionID) public onlyOwner {
         require(
             _transactionID > 0 && _transactionID <= transactions.length,
             "Invalid transaction ID!"
         );
-        transactions[_transactionID - 1].isMLAlert = false;
+        transactions[_transactionID - 1].isMLAlert = !transactions[
+            _transactionID - 1
+        ].isMLAlert;
     }
 
     // Function to retrieve all transactions
