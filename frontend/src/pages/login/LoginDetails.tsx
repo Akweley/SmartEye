@@ -25,7 +25,7 @@ const LoginDetails = ({ user }: { user: string }) => {
   const [address, setAddress] = useState("");
   const [name, setName] = useState("");
   const [signer, setSigner] = useState<JsonRpcSigner>();
-
+  console.log(user);
   const navigate = useNavigate();
 
   const validateCredentials = async () => {
@@ -75,7 +75,7 @@ const LoginDetails = ({ user }: { user: string }) => {
       setError("");
       setIsSubmitting(true);
       const provider = new ethers.BrowserProvider(
-        ethereum as ethers.Eip1193Provider,
+        ethereum as ethers.Eip1193Provider
       );
       const signer = await provider.getSigner();
       setSigner(signer);
