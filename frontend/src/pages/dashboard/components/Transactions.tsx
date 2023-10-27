@@ -81,7 +81,11 @@ const Transactions = ({
       (r) => r.transactionID === row.transactionID
     );
     if (isExists) {
-      flaggedRows.filter((r) => r !== row);
+      console.log("exists");
+      const filteredFlaggedRows = flaggedRows.filter(
+        (r) => r.transactionID !== row.transactionID
+      );
+      setFlaggedRows(filteredFlaggedRows);
       return;
     }
     setFlaggedRows([...flaggedRows, row]);
