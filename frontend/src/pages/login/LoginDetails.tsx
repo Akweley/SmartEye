@@ -25,7 +25,7 @@ const LoginDetails = () => {
   const [address, setAddress] = useState("");
   const [name, setName] = useState("");
   const [signer, setSigner] = useState<JsonRpcSigner>();
-  console.log(user);
+
   const navigate = useNavigate();
 
   const validateCredentials = async () => {
@@ -41,18 +41,9 @@ const LoginDetails = () => {
       return;
     }
 
-    let isAdmin;
-
-    try {
-      setError("");
-      // @ts-ignore
-      isAdmin = await amlContract.connect(signer).isAdmin();
-      console.log(isAdmin);
-    } catch (error) {
-      console.log(error);
-      setError("Error occured. Submit again");
-      setIsSubmitting(false);
-    }
+    //@ts-ignore
+    const isAdmin = await amlContract.connect(signer).isAdmin();
+    // console.log(isAdmin);
 
     setIsSubmitting(false);
 
@@ -75,7 +66,7 @@ const LoginDetails = () => {
       setError("");
       setIsSubmitting(true);
       const provider = new ethers.BrowserProvider(
-        ethereum as ethers.Eip1193Provider
+        ethereum as ethers.Eip1193Provider,
       );
       const signer = await provider.getSigner();
       setSigner(signer);

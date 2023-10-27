@@ -48,7 +48,7 @@ const SignUp = () => {
           .createAMLContract(name, id);
 
         setIsSubmitting(false);
-        navigate("/login/admin");
+        navigate("/login");
       } catch (error) {
         console.log(error);
         setError("Error occured. Try again later");
