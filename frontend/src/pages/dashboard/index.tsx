@@ -11,10 +11,10 @@ import transactions from "@/database/index.json";
 
 export default function AdminPage() {
   const location = useLocation();
-  const [selectedTransaction, setSelectedTransaction] =
+  const [_selectedTransaction, setSelectedTransaction] =
     useState<Transaction | null>(null);
   //   const { loading, contract } = useQueryContract(location.state.address);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [_isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const loading = false;
 
   return (
