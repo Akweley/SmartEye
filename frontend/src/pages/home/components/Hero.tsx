@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui";
 
+// import absa from '@/assets/absa.png'
+// import cal from '@/assets/cal.png'
+// import fab from '@/assets/fab.jpg'
+// import cbg from '@/assets/cbg.webp'
+// import stanbic from '@/assets/stanbic.jpg'
+
 const Hero = () => {
   return (
     <section className="w-full flex-center flex-col">
@@ -22,6 +28,29 @@ const Hero = () => {
         </Button>
       </div>
 
+      <section className="relative z-30 m-auto flex w-[90vw] flex-col items-start justify-center px-10 py-[15vh] md:items-center lg:w-[75vw]">
+        <h6 className="mb-8 font-figTree text-sm font-bold uppercase text-primary/60">
+          We&apos;re trusted by
+        </h6>
+
+        <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center font-bold">
+          <div className="mb-8 px-8">
+            <p className="text-sm">ABSA</p>
+          </div>
+          <div className="mb-8 px-8">
+            <p className="text-sm">CBG</p>
+          </div>
+          <div className="mb-8 px-8">
+            <p className="text-sm">HFC</p>
+          </div>
+          <div className="mb-8 px-8">
+            <p className="text-sm">GCB</p>
+          </div>
+          <div className="mb-8 px-8">
+            <p className="text-sm">FAB</p>
+          </div>
+        </div>
+      </section>
       {/* <div className="w-full overflow-hidden">
         <motion.div
           className="flex flex-row gap-x-8"
@@ -36,7 +65,7 @@ const Hero = () => {
         </motion.div>
       </div> */}
 
-      <div className="flex xl:gap-20 gap-16 lg:px-8 w-full p-16 xl:p-20 justify-center items-center text-center hover:bg-opacity-10 rounded-lg">
+      {/* <div className="flex xl:gap-20 gap-16 lg:px-8 w-full p-16 xl:p-20 justify-center items-center text-center hover:bg-opacity-10 rounded-lg">
         <div className="p-4 rounded-lg border border-[#f59e0b]">
           <h3 className="text-2xl font-bold mb-3">Title</h3>
           <p className="">
@@ -57,7 +86,7 @@ const Hero = () => {
             decentralized application (DApp) that leverages blockchain
           </p>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };
