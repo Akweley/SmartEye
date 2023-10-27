@@ -6,6 +6,25 @@ import { Link as LinkScroll } from "react-scroll";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui";
 
+const navItems = [
+  {
+    name: "Partners",
+    href: "/partners",
+  },
+  {
+    name: "About Us",
+    href: "/about",
+  },
+  {
+    name: "Services",
+    href: "/services",
+  },
+  {
+    name: "FAQs",
+    href: "/faqs",
+  },
+];
+
 const NavBar = () => {
   const navigate = useNavigate();
   const [scroll, setScroll] = useState(false);
@@ -22,87 +41,39 @@ const NavBar = () => {
     };
   }, []);
   return (
-    <div className="bg-black">
-      <div
+    <div
+      className={cn(
+        "top-0 z-[99999] w-full transition-colors duration-500 ease-in-out",
+        scroll ? "bg-primary fixed top-0" : "bg-transparent"
+      )}
+    >
+      <nav
         className={cn(
-          "bg-black/90 flex w-full px-8 lg:px-16 lg:py-2 z-50 transition-all duration-300 ease-in-out",
-          scroll ? "fixed top-0 left-0 shadow-lg shadow-yellow-50/5" : ""
+          "container mx-auto flex items-center justify-between px-7 transition-all duration-300 ease-in-out",
+          scroll ? "py-4" : "py-8"
         )}
       >
-        <div className="md:mx-0 lg:mx-auto lg:px-8 lg:py-2 w-full flex justify-between items-center">
-          <Link to="/">
-            <span className="font-bold text-white text-3xl hover:text-[#9918b3]  transition-all duration-300 ease-in-out">
-              VerifyEd&#8482;
-            </span>
-          </Link>
-          <div className="flex gap-12 items-center text-sm text-white font-bold">
-            <Link
-              to="/"
-              className=" hover:scale-105 hover:text-[#9918b3] transition-all duration-300 ease-in-out"
-            >
-              Home
-            </Link>
+        <Link className="text-3xl font-black tracking-wider" to="/">
+          SmartEyes
+        </Link>
 
-            <LinkScroll
-              // to={`${location.pathname != "/" ? navigate("/") : "about"}`}
-              to="about"
-              spy={true}
-              smooth={true}
-              duration={1000}
-              offset={-100}
-              className=" hover:scale-105 hover:text-[#9918b3] transition-all duration-300 ease-in-out cursor-pointer"
-            >
-              About Us
-            </LinkScroll>
-            <LinkScroll
-              // to={`${location.pathname != "/" ? navigate("/") : "about"}`}
-              to="pricing"
-              spy={true}
-              smooth={true}
-              duration={1000}
-              offset={-100}
-              className=" hover:scale-105 hover:text-[#9918b3] transition-all duration-300 ease-in-out cursor-pointer"
-            >
-              Pricing
-            </LinkScroll>
-            <LinkScroll
-              // to={`${location.pathname != "/" ? navigate("/") : "about"}`}
-              to="contact"
-              spy={true}
-              smooth={true}
-              duration={1000}
-              offset={-100}
-              className=" hover:scale-105 hover:text-[#9918b3] transition-all duration-300 ease-in-out cursor-pointer"
-            >
-              Contact Us
-            </LinkScroll>
+        <ul className="hidden flex-row items-center gap-8 lg:flex">
+          {navItems.map((item, index) => (
+            <li key={index}>
+              <Link
+                to={item.href}
+                className="desc font-medium tracking-widest transition-all duration-500 ease-in-out hover:text-primary"
+              >
+                {item.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
 
-            <div className="flex items-center gap-x-4">
-              <Button
-                variant={"outline"}
-                className="text-white bg-transparent border-white hover:bg-white hover:text-black transition-all duration-300 ease-in-out"
-                onClick={() =>
-                  navigate("/auth", {
-                    state: { from: { pathname: "/login" } },
-                  })
-                }
-              >
-                Login
-              </Button>
-              <Button
-                className="bg-[#9918b3]"
-                onClick={() =>
-                  navigate("/auth", {
-                    state: { from: { pathname: "/signup" } },
-                  })
-                }
-              >
-                Sign up
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
+        <Button className="tracking-widest uppercase text-sm hidden lg:block">
+          Login
+        </Button>
+      </nav>
     </div>
   );
 };
