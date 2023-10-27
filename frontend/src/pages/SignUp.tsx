@@ -34,7 +34,7 @@ const SignUp = () => {
       setError("");
       setIsSubmitting(true);
       const provider = new ethers.BrowserProvider(
-        ethereum as ethers.Eip1193Provider,
+        ethereum as ethers.Eip1193Provider
       );
       const signer = await provider.getSigner();
 
@@ -68,7 +68,7 @@ const SignUp = () => {
   return (
     <div>
       <div className="container bg-white relative min-h-screen  items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
-        <div className="donate-bg relative hidden h-full flex-col bg-[#661477] px-20 pt-5 pb-16 text-white dark:border-r lg:flex">
+        <div className="donate-bg relative hidden h-full flex-col bg-primary px-20 pt-5 pb-16 text-white dark:border-r lg:flex">
           <div className="h-full items-center flex justify-center">
             <div className="flex items-center xl:py-20 xl:px-8  justify-center xl:shadow-2xl">
               <img
@@ -82,10 +82,7 @@ const SignUp = () => {
 
         <div className="lg:p-8">
           <div className="mx-auto flex w-full flex-col items-center justify-center space-y-6 sm:w-[450px]">
-            <Link
-              to="/"
-              className="drop-shadow-xl bg-[#9918B3] p-6 rounded-full"
-            >
+            <Link to="/" className="drop-shadow-xl bg-primary p-6 rounded-full">
               <Home className="w-16 h-16 text-white " />
             </Link>
             <form onSubmit={handleSubmit} className="w-full">
@@ -128,17 +125,14 @@ const SignUp = () => {
                   </div>
                 </CardContent>
                 <CardFooter className="flex flex-col w-full gap-3 justify-center">
-                  <Button
-                    disabled={isSubmitting}
-                    className="px-10 bg-[#9918b3]"
-                  >
+                  <Button disabled={isSubmitting} className="px-10 bg-primary">
                     Sign Up
                   </Button>
                   <p className="text-sm text-gray-400">
                     Already have an account?{" "}
                     <Link
                       to="/login"
-                      className="text-[#9918b3] hover:text[#c22ce0]"
+                      className="text-primary hover:text-primary-dark"
                     >
                       Login
                     </Link>

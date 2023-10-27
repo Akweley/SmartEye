@@ -7,3 +7,4 @@ export * from "./textarea";
 export * from "./checkbox";
 export * from "./dropdown-menu";
 export * from "./avatar";
+export * from "./select";
