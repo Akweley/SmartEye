@@ -6,6 +6,6 @@ const FACTORY_ADDRESS = "0x40c597eeD5bc59eEfdc79f283Cd43b26B369096c";
 
 export const AMLFactory = new ethers.Contract(FACTORY_ADDRESS, FACTORY_ABI);
 
-export const verifyEd = async (ADDRESS: string) => {
+export const AMLContract = async (ADDRESS: string) => {
   return new ethers.Contract(ADDRESS, ABI);
 };
